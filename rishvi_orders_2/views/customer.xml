@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Default group by parent for all customers views -->
+        <record id="default_group_parent_for_customers" model="ir.filters">
+            <field name="name">Parent Name</field>
+            <field name="model_id">res.partner</field>
+            <field name="domain">[]</field>
+            <field name="context">{'group_by': ['parent_id']}</field>
+            <field name="is_default">True</field>
+            <!-- <field name="user_id" eval="False"/> -->
+        </record>
+
+
+    </data>
+</odoo>
+
+

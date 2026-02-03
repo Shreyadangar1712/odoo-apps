@@ -1,0 +1,75 @@
+<odoo>
+    <!-- Action -->
+    <record id="action_orders_kanban_Syncer_Operations" model="ir.actions.client">
+        <field name="name">Linn  Operation</field>
+        <field name="tag">linn_Order_Operation</field>
+    </record>
+
+<!--    <menuitem id="menu_crm_importer_root"-->
+<!--              name="Linn Order Operations"-->
+<!--              parent="crm.crm_menu_root"-->
+<!--              sequence="21"-->
+<!--              action="action_orders_kanban_Syncer_Operations"/>-->
+
+<!--    <menuitem id="menu_source_root"-->
+<!--              name="Source"-->
+<!--              parent="menu_crm_importer_root"-->
+<!--              sequence="10"-->
+<!--              action="action_source_details"/>-->
+
+<!--    <menuitem id="menu_sub_source_root"-->
+<!--              name="Sub Source"-->
+<!--              parent="menu_crm_importer_root"-->
+<!--              sequence="20"-->
+<!--              action="action_orders_kanban_Syncer_Operations"/>-->
+
+    <menuitem id="menu_crm_importer_root"
+          name="Linn Operations"
+          parent="crm.crm_menu_root"
+          sequence="21"/>
+
+<!-- Submenu 1: Main View (acts as the parent action) -->
+<menuitem id="menu_linn_operations_main"
+          name="All Operations"
+          parent="menu_crm_importer_root"
+          action="action_orders_kanban_Syncer_Operations"
+          sequence="1"/>
+
+<!-- Submenu 2: Source -->
+<menuitem id="menu_source_root"
+          name="Source"
+          parent="menu_crm_importer_root"
+          action="action_source_details"
+          sequence="2"/>
+    <menuitem id="menu_sub_source_root"
+          name="Sub Source"
+          parent="menu_crm_importer_root"
+          action="action_sub_source_details"
+          sequence="3"/>
+
+<!-- Submenu 3: Taxes-->
+
+    <menuitem id="menu_taxes"
+          name="Taxes"
+          parent="menu_crm_importer_root"
+          action="action_account_tax_linnworks"
+          sequence="4"/>
+    <!-- Submenu 4: Currency-->
+    <menuitem id="menu_currency"
+          name="Currency"
+          parent="menu_crm_importer_root"
+          action="action_account_currency_linnworks"
+          sequence="5"/>
+
+    <menuitem id="menu_partner_similarity_records" name="Similar Customers" parent="menu_crm_importer_root" action="action_partner_similarity" sequence="14"/>
+    <menuitem id="menu_sale_shipping_services"
+              name="Shipping Services"
+              parent="menu_crm_importer_root"
+              action="action_sale_shipping_services"
+              sequence="6"/>
+    <menuitem id="menu_linn_countries"
+          name="Linn Countries"
+          parent="menu_crm_importer_root"
+          action="action_linnwork_country"
+          sequence="7"/>
+</odoo>
