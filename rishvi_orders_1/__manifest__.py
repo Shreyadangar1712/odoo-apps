@@ -22,14 +22,19 @@
     ],
     'assets': {
     'web.assets_backend': [
-            'rishvi_orders_2/static/src/xml/linn_orders_dashboard.xml',
-            'rishvi_orders_2/static/src/js/linn_orders_dashboard.js',
-            'rishvi_orders_2/static/src/scss/linn_orders_dashboard.scss',
+            'rishvi_orders_1/static/src/xml/linn_orders_dashboard.xml',
+            'rishvi_orders_1/static/src/js/linn_orders_dashboard.js',
+            'rishvi_orders_1/static/src/scss/linn_orders_dashboard.scss',
 
     ],
     },
+    "images": [
+    "static/description/cover.jpg",
+],
     "installable": True,
     "application": False,
     "auto_install": False,
     "license": "OPL-1",
 }
+
+

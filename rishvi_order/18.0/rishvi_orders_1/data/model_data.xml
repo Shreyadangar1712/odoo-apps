@@ -1,9 +1,0 @@
-<odoo>
-    <data noupdate="1">
-        <record id="model_partner_similarity" model="ir.model">
-            <field name="name">partner.similarity</field>
-            <field name="model">partner.similarity</field>
-            <field name="state">manual</field>
-        </record>
-    </data>
-</odoo>
