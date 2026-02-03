@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- List view for Partner Similarity -->
+    <record id="view_partner_similarity_list" model="ir.ui.view">
+        <field name="name">partner.similarity.list</field>
+        <field name="model">partner.similarity</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="partner_id"/>
+                <field name="partner_address"/>
+                <field name="existing_id"/>
+                <field name="existing_address"/>
+                <field name="name_similarity"/>
+                <field name="address_similarity"/>
+                <button name="merge_the_user"
+                                string="Merge Users"
+                                type="object"
+                                class="btn-primary"
+                                invisible="merge_disabled"/>
+                <field name="merge_status" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form view for Partner Similarity -->
+    <record id="view_partner_similarity_form" model="ir.ui.view">
+        <field name="name">partner.similarity.form</field>
+        <field name="model">partner.similarity</field>
+        <field name="arch" type="xml">
+            <form string="Similar Partner Records">
+                <sheet>
+                    <header>
+                        <button name="merge_the_user"
+                                string="Merge Users"
+                                type="object"
+                                class="btn-primary"
+                                invisible="merge_disabled"/>
+                    </header>
+                    <field name="merge_status" widget="badge"/>
+                    <group string="Partner Comparison">
+                        <field name="partner_id"/>
+                         <field name="partner_address"/>
+                    </group>
+                    <group string="Partner Address Comparison">
+                        <field name="existing_id"/>
+                         <field name="existing_address"/>
+                    </group>
+                    <group string="Similarity Scores">
+                        <field name="name_similarity"/>
+                        <field name="address_similarity"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Schedule Action -->
+    <record id="ir_cron_partner_similarity" model="ir.cron">
+            <field name="name">Compare Partner Similarities</field>
+            <field name="model_id" ref="model_partner_similarity"/>
+            <field name="state">code</field>
+            <field name="code">model.search([], limit=1).compare_partners()</field>
+            <field name="interval_number">3</field>
+            <field name="interval_type">hours</field>
+    </record>   
+
+    <!-- Action for Partner Similarity -->
+    <record id="action_partner_similarity" model="ir.actions.act_window">
+        <field name="name">Similar Partner Records</field>
+        <field name="res_model">partner.similarity</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+     <!-- Server Action -->
+    <!-- <record id="action_compare_partner_similarity" model="ir.actions.server">
+        <field name="name">Compare Partner Similarities</field>
+        <field name="model_id" ref="model_partner_similarity"/>
+        <field name="state">code</field>
+        <field name="binding_model_id" ref="model_partner_similarity"/>
+        <field name="binding_type">action</field>
+        <field name="code">model.search([], limit=1).compare_partners()</field>
+    </record> -->
+
+    <!-- <menuitem id="menu_partner_similarity_records" name="Similar Customers" 
+              parent="menu_crm_importer_root" action="action_partner_similarity" sequence="14"/> -->
+
+
+</odoo>
