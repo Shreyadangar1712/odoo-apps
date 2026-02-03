@@ -1,0 +1,150 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="linn_inventory.LinnDashboardTemplate">
+        <div class="o_dashboard container-fluid p-4"
+             style="max-height:100vh; overflow:auto; background:linear-gradient(135deg,#f8f9fc,#eef3f9);">
+
+            <!-- Header -->
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-success">
+                    🧩 INVENTORY OPERATIONS
+                </h2>
+                <p class="text-muted">Manage, Sync, and Monitor Your Inventory Seamlessly</p>
+            </div>
+
+            <!-- Single Product Import -->
+            <div class="px-2 mb-2">
+                <h3 class="fw-semibold text-info">PRODUCT IMPORT</h3>
+                <hr class="mt-1 mb-4" style="width:180px; border:2px solid #8fa1c7;"/>
+            </div>
+
+              <div class="row g-3">
+
+                <!-- Warehouse Details -->
+                  <div class="col-6">   <!-- CHANGED -->
+                    <div class="card elegant-card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-center-info mb-4">WAREHOUSE DETAILS</h5>
+
+                            <div class="text-center mb-4">
+                                <h6 class="fw">Linn Warehouse Details</h6>
+                                <button class="btn btn-outline-info w-100 mt-2 rounded-pill"
+                                        style="font-weight:500"
+                                        t-on-click="getWarehouseDetails">
+                                     Sync Warehouse
+                                </button>
+                            </div>
+
+                            <div class="text-center">
+                                <h6 class="fw">Linn Product Category Details</h6>
+                                <button class="btn btn-outline-info w-100 mt-2 rounded-pill"
+                                        t-on-click="getProductCaregories">
+                                     Sync Product Categories
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add by Linn SKU -->
+    <div class="col-6">   <!-- CHANGED -->
+                    <div class="card elegant-card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-center mb-3">ADD INVENTORY BY SKU</h5>
+                            <p class="text-muted small text-center mb-3">Enter Linn SKU To Import Specific Product.</p>
+                            <input type="text" class="form-control rounded-pill mb-3"
+                                   placeholder="00-00-00-00-00" id="linnIdInputSku"/>
+                            <br></br>
+                            <br></br>
+                            <button class="btn btn-primary w-100 rounded-pill" t-on-click="addBySku">
+                                ➕ Add Inventory
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bulk Import -->
+            <div class="px-2 mt-5">
+                <h3 class="fw-semibold text-warning">BULK IMPORT</h3>
+                <hr class="mt-1 mb-4" style="width:150px; border:2px solid #8fa1c7;"/>
+            </div>
+
+              <div class="row g-3">
+
+                <!-- Product Quantities -->
+                <div class="col-6">
+                    <div class="card elegant-card shadow-sm border-0 h-100 elegant-card">
+                        <div class="card-body text-center">
+                            <br></br>
+                            <h5 class="fw-bold text-primary">PRODUCT QUANTITIES</h5>
+                            <hr/>
+
+                            <div class="row my-3">
+                                <div class="col-6">
+                                    <h3 class="fw-bold text-dark mb-0"><t t-esc="inventoryCountLinn"/></h3>
+                                    <small class="text-muted">In Rishvi</small>
+                                </div>
+                                <div class="col-6">
+                                    <h3 class="fw-bold text-dark mb-0"><t t-esc="inventoryCountRishvi"/></h3>
+                                    <small class="text-muted">In Linnworks</small>
+                                </div>
+                            </div>
+                            <br>
+                            </br>
+
+                            <button class="btn btn-warning w-100 rounded-pill mt-2" t-on-click="getAllInventory">
+                                🔁 Refresh Inventory
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sync All Inventory -->
+                <div class="col-6">
+                    <div class="card elegant-card shadow-sm border-0 h-100 elegant-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="fw-bold text-dark mb-0">
+                                    <br></br>
+                                    <t t-esc="accpectedTime"/> Sec
+                                    <span class="text-muted fs-6">Expected</span>
+                                </h4>
+                                <span class="text-muted"><t t-esc="this.pagesCount"/> Pages</span>
+                            </div>
+
+                            <div class="row g-2 my-3">
+                                <div class="col">
+                                    <input type="number" min="1" id="startPage" class="form-control rounded-pill" placeholder="Start"/>
+                                </div>
+                                <div class="col">
+                                    <input type="number" min="1" id="endPage" class="form-control rounded-pill" placeholder="End"/>
+                                </div>
+                            </div>
+
+                            <small class="text-muted d-block mb-2">
+                                Max: <b>20</b> Pages × <b>30</b> Products = <b>600</b> Items
+                            </small>
+
+                            <div class="progress mb-3" style="height:10px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                     t-att-style="'width:' + (syncProgress) + '%;'">
+                                    <t t-esc="(syncProgress) + '%'"/>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-success w-100 rounded-pill" t-on-click="syncAllInventory">
+                                🔄 Sync All Inventory
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+      <!-- Footer -->
+            <div class="dashboard-footer text-center mt-4 pt-3 border-top">
+                <p class="text-muted small">Inventory  Dashboard</p>
+            </div>
+        </div>
+    </t>
+</templates>

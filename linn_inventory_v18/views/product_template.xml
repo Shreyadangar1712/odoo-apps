@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_template_form_linnworks_header_btn" model="ir.ui.view">
+        <field name="name">product.template.form.linnworks.header.button</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header" position="inside">
+                <button
+                        name="update_for_linnwork_product"
+                        type="object"
+                        string="Sync with Linnworks"
+                        class="oe_highlight"
+                        help="Fetch and update quantities from Linnworks."/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_product_template_form_inherit_linnworks" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.linnworks</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Insert new notebook page at the end of existing notebook -->
+            <xpath expr="//page[@name='general_information']" position="after">
+                <page string="Linnworks">
+                    <group>
+                        <field name="linnworks_item_id" readonly="1"/>
+                        <field name="image_url" readonly="1" string="Linn Img Url"/>
+                        <field name="linn_description" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+
+  <!-- Better approach: Find the container holding invoice_policy -->
+<!-- Find the group that contains invoice_policy -->
+<xpath expr="//notebook" position="inside">
+    <page string="Dimensions" name="dimensions_page">
+        <group>
+            <group>
+                <field name="weight"/>
+            </group>
+            <group>
+                <field name="length"/>
+            </group>
+            <group>
+                <field name="height"/>
+            </group>
+        </group>
+    </page>
+</xpath>
+
+
+
+        </field>
+    </record>
+</odoo>

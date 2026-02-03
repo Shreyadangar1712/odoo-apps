@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_taxes" model="ir.ui.view">
+        <field name="name">account.tax.linnworks</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+    </record>
+
+    <record id="view_order_form_taxes" model="ir.ui.view">
+        <field name="name">account.tax.linnworks</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Linnworks Countries">
+                    <group>
+                        <field name="same_tax_country_ids"
+                               domain="[('tax_rate', '=', amount)]"
+                               readonly="1"
+                               nolabel="1"
+                               options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"
+                               widget="many2many_tags"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="view_account_tax_list_inherit" model="ir.ui.view">
+        <field name="name">account.tax.tree.inherit</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.account_tax_view_tree"/>
+        <field name="arch" type="xml">
+            <list>
+                <!-- Add your field after an existing one -->
+                <field name="same_tax_country_ids" widget="many2many_tags"
+                       options="{'no_open': True, 'no_create': True}"/>
+            </list>
+
+        </field>
+    </record>
+
+
+    <record id="action_account_tax_linnworks" model="ir.actions.act_window">
+        <field name="name">Taxes</field>
+        <field name="res_model">account.tax</field>
+        <field name="view_mode">list,form</field>
+        <field name="target">current</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,13 @@
+<odoo>
+    <data noupdate="1">
+        <record id="ir_cron_call_controller_sync_onhand_inventory" model="ir.cron">
+            <field name="name">Sync On-Hand Inventory</field>
+            <field name="model_id" ref="model_sync_controller_cron"/>
+            <field name="state">code</field>
+            <field name="code">model.search([], limit=1).cron_call_controller_sync_onhand_inventory()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+        </record>
+    </data>
+</odoo>
+

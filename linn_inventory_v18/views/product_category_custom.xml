@@ -1,0 +1,33 @@
+<!-- views/product_category_views.xml -->
+<odoo>
+    <!-- ========================================================= -->
+    <!-- 1️⃣  Form View Inheritance (already done before) -->
+    <!-- ========================================================= -->
+    <record id="view_product_category_form_inherit_linnworks" model="ir.ui.view">
+        <field name="name">product.category.form.inherit.linnworks</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <group>
+                    <field name="linnworks_category_id" readonly='1'/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ========================================================= -->
+    <!-- 2️⃣  List View Inheritance -->
+    <!-- ========================================================= -->
+    <record id="view_product_category_tree_inherit_linnworks" model="ir.ui.view">
+        <field name="name">product.category.list.inherit.linnworks</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_list_view"/>
+        <field name="arch" type="xml">
+            <!-- Add Linnworks fields after the category name -->
+            <xpath expr="//field[@name='display_name']" position="after">
+                <field name="linnworks_category_id" readonly='1'/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

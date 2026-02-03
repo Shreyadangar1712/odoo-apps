@@ -1,0 +1,57 @@
+<odoo>
+    <!-- ========================================================= -->
+    <!-- 1️⃣  Tree (List) View: Only name + Linnworks Category ID -->
+    <!-- ========================================================= -->
+    <record id="view_product_category_list_simple" model="ir.ui.view">
+        <field name="name">product.category.list.simple</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_list_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="replace">
+                <list string="Product Categories">
+                    <field name="name"/>
+                    <field name="linnworks_category_id" readonly="1"/>
+                </list>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ========================================================= -->
+    <!-- 2️⃣  Form View: Only name + Linnworks Category ID -->
+    <!-- ========================================================= -->
+    <record id="view_product_category_form_simple" model="ir.ui.view">
+        <field name="name">product.category.form.simple</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="replace">
+                <form string="Product Category">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="linnworks_category_id" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ========================================================= -->
+    <!-- 3️⃣  Action to open the new simple views -->
+    <!-- ========================================================= -->
+    <record id="action_product_category_simple" model="ir.actions.act_window">
+        <field name="name">Product Categories</field>
+        <field name="path">product_catgories</field>
+        <field name="res_model">product.category</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ========================================================= -->
+    <!-- 4️⃣  Menu Item under Inventory → Configuration -->
+    <!-- ========================================================= -->
+    <menuitem id="menu_product_category_simple"
+              name="Product Categories"
+              parent="menu_product_dashboard_root"
+              action="action_product_category_simple"/>
+</odoo>

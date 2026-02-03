@@ -1,0 +1,388 @@
+// /* 🌐 Linn Inventory Dashboard Responsive Styles */
+
+// /* Global dashboard container */
+// .o_dashboard {
+//     background: #ffffff;
+//     border-radius: 12px;
+//     color: #2c3e50;
+//     font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+//   }
+  
+//   /* Dashboard title */
+//   .o_dashboard h2 {
+//     font-weight: 600;
+//     color: #1e2a38;
+//   }
+  
+//   /* Flex dashboard section */
+//   .o_dashboard_view {
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: 20px;
+//     justify-content: flex-start;
+//   }
+  
+//   /* Kanban card base styling */
+//   .o_card {
+//     flex: 1 1 calc(33.333% - 20px);
+//     border-radius: 10px;
+//     padding: 20px;
+//     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+//     transition: transform 0.2s ease, box-shadow 0.2s ease;
+//     background: #f8f9fb;
+//   }
+  
+//   /* Card hover effect */
+//   .o_card:hover {
+//     transform: translateY(-4px);
+//     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+//   }
+  
+//   /* Header and body separation */
+//   .o_kanban_header {
+//     font-weight: 600;
+//     font-size: 1rem;
+//     color: #2d3436;
+//   }
+  
+//   .o_kanban_body {
+//     margin-top: 10px;
+//   }
+  
+//   /* Inputs */
+//   .o_kanban_body input[type="text"],
+//   .o_kanban_body input[type="number"] {
+//     width: 100%;
+//     padding: 8px 10px;
+//     border-radius: 6px;
+//     border: 1px solid #dce3eb;
+//     outline: none;
+//     font-size: 14px;
+//   }
+  
+//   .o_kanban_body input:focus {
+//     border-color: #007bff;
+//     box-shadow: 0 0 3px rgba(0, 123, 255, 0.3);
+//   }
+  
+//   /* Buttons */
+//   .o_kanban_body .btn {
+//     width: 100%;
+//     padding: 8px 12px;
+//     font-weight: 500;
+//     border-radius: 6px;
+//   }
+  
+//   /* Progress bar animation */
+//   .progress-bar {
+//     transition: width 0.4s ease-in-out;
+//   }
+  
+//   /* Warehouse list formatting */
+//   .o_kanban_body ul {
+//     margin: 0;
+//     padding: 0;
+//     list-style: none;
+//   }
+  
+//   .o_kanban_body li {
+//     padding: 8px 0;
+//     border-bottom: 1px solid #e0e0e0;
+//   }
+  
+//   /* 🧩 Responsive Design */
+//   @media (max-width: 992px) {
+//     .o_card {
+//       flex: 1 1 calc(50% - 20px);
+//     }
+//   }
+  
+//   @media (max-width: 768px) {
+//     .o_dashboard_view {
+//       flex-direction: column;
+//     }
+  
+//     .o_card {
+//       flex: 1 1 100%;
+//       padding: 16px;
+//     }
+  
+//     .o_dashboard h2 {
+//       font-size: 1.25rem;
+//     }
+  
+//     .o_kanban_header {
+//       font-size: 0.95rem;
+//     }
+  
+//     .o_kanban_body .btn {
+//       font-size: 0.9rem;
+//       padding: 10px;
+//     }
+//   }
+  
+/* ================================
+   Linn Inventory Dashboard Styles
+   ================================ */
+
+/* --- General Layout --- */
+// .o_dashboard {
+//   max-width: 100%;
+//   margin: 0 auto;
+//   padding: 20px;
+//   background-color: #ffffff;
+// }
+//
+// .o_dashboard h2 {
+//   font-weight: 600;
+//   color: #2c3e50;
+// }
+//
+// .card {
+//   border-radius: 12px !important;
+//   border: none !important;
+//   transition: transform 0.2s ease, box-shadow 0.2s ease;
+// }
+//
+// .card:hover {
+//   transform: translateY(-3px);
+//   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+// }
+//
+// /* --- Buttons --- */
+// .btn {
+//   border-radius: 8px !important;
+//   font-weight: 500;
+//   padding: 8px 16px;
+//   transition: all 0.3s ease;
+// }
+//
+// .btn:hover {
+//   transform: translateY(-1px);
+//   opacity: 0.9;
+// }
+//
+// /* --- Inputs --- */
+// input[type="text"],
+// input[type="number"] {
+//   border-radius: 6px;
+//   border: 1px solid #d1d9e0;
+//   padding: 10px 12px;
+//   width: 100%;
+//   transition: border-color 0.3s ease;
+// }
+//
+// input[type="text"]:focus,
+// input[type="number"]:focus {
+//   border-color: #007bff;
+//   outline: none;
+// }
+//
+// /* --- Card Headers & Content --- */
+// .card-title {
+//   font-weight: 600;
+//   font-size: 1.1rem;
+//   color: #34495e;
+//   text-align: left;
+// }
+//
+// .card-body hr {
+//   border-top: 1px solid #dce3eb;
+//   margin: 10px 0;
+// }
+//
+// /* --- Progress Bar --- */
+// .progress {
+//   height: 18px;
+//   border-radius: 10px;
+// }
+//
+// .progress-bar {
+//   transition: width 0.4s ease;
+// }
+//
+// /* --- Lists for Warehouse Details --- */
+// .list-group-item {
+//   border: none !important;
+//   border-bottom: 1px solid #eaeaea !important;
+//   font-size: 0.9rem;
+//   color: #2c3e50;
+// }
+//
+// /* --- Responsive Design --- */
+//
+// /* Small Devices (Phones) */
+// @media (max-width: 575.98px) {
+//   .o_dashboard {
+//     padding: 15px;
+//   }
+//
+//   h2 {
+//     font-size: 1.25rem;
+//     text-align: center;
+//   }
+//
+//   .card-body {
+//     text-align: center;
+//   }
+//
+//   .card-title {
+//     text-align: center;
+//   }
+//
+//   .btn {
+//     font-size: 0.9rem;
+//     padding: 8px 12px;
+//   }
+//
+//   input[type="text"],
+//   input[type="number"] {
+//     font-size: 0.9rem;
+//   }
+// }
+//
+// /* Medium Devices (Tablets) */
+// @media (min-width: 576px) and (max-width: 991.98px) {
+//   .card-body {
+//     text-align: center;
+//   }
+//
+//   .card-title {
+//     font-size: 1rem;
+//   }
+//
+//   .o_dashboard h2 {
+//     text-align: center;
+//   }
+// }
+//
+// /* Large Devices (Desktops) */
+// @media (min-width: 992px) {
+//   .card-body {
+//     text-align: left;
+//   }
+//
+//   .card {
+//     min-height: 240px;
+//   }
+// }
+//
+// /* --- Additional Aesthetic Tweaks --- */
+// .btn-primary {
+//   background: linear-gradient(90deg, #007bff, #00a8ff);
+//   border: none;
+// }
+//
+// .btn-info {
+//   background: linear-gradient(90deg, #00c3ff, #1e90ff);
+//   border: none;
+//   color: white;
+// }
+//
+// .btn-success {
+//   background: linear-gradient(90deg, #28a745, #7dd87d);
+//   border: none;
+// }
+//
+// .btn-secondary {
+//   background: linear-gradient(90deg, #6c757d, #adb5bd);
+//   border: none;
+//   color: white;
+// }
+//
+// .card-body span {
+//   color: #666;
+// }
+//
+// .card-body h3 {
+//   color: #2c3e50;
+//   font-weight: 600;
+// }
+//
+//
+// /* ============================================
+//    🌈 Elegant Scrollbar Styling for o_dashboard
+//    ============================================ */
+//
+//    .o_dashboard {
+//     max-height: 100vh;
+//     overflow-y: auto;
+//     overflow-x: hidden;
+//     scroll-behavior: smooth;
+//     scrollbar-width: thin; /* For Firefox */
+//     scrollbar-color: #b0bec5 #f5f6fa; /* thumb + track */
+//     background: linear-gradient(180deg, #ffffff, #f8fafc);
+//     border-radius: 12px;
+//     box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+//     padding-right: 8px; /* prevent text cutoff near scrollbar */
+//   }
+//
+//   /* Chrome, Edge, Safari */
+//   .o_dashboard::-webkit-scrollbar {
+//     width: 10px;
+//   }
+//
+//   .o_dashboard::-webkit-scrollbar-track {
+//     background: #f5f6fa;
+//     border-radius: 10px;
+//     margin: 4px;
+//   }
+//
+//   .o_dashboard::-webkit-scrollbar-thumb {
+//     background: linear-gradient(180deg, #b0bec5, #90a4ae);
+//     border-radius: 10px;
+//   }
+//
+//   .o_dashboard::-webkit-scrollbar-thumb:hover {
+//     background: linear-gradient(180deg, #78909c, #607d8b);
+//     transform: scaleX(1.1);
+//   }
+//
+//   .o_dashboard::-webkit-scrollbar-corner {
+//     background: transparent;
+//   }
+//
+//   /* Add subtle shadow when scrolling */
+//   .o_dashboard:before {
+//     content: "";
+//     position: sticky;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 10px;
+//     background: linear-gradient(to bottom, rgba(0,0,0,0.05), transparent);
+//     z-index: 1;
+//   }
+//
+//   /* iOS/Touch smooth scrolling */
+//   @supports (-webkit-overflow-scrolling: touch) {
+//     .o_dashboard {
+//       -webkit-overflow-scrolling: touch;
+//     }
+//   }
+//
+//   /* Optional fade-in animation for smooth UX */
+//   @keyframes fadeInDashboard {
+//     from { opacity: 0; transform: translateY(5px); }
+//     to { opacity: 1; transform: translateY(0); }
+//   }
+//
+//   .o_dashboard {
+//     animation: fadeInDashboard 0.4s ease;
+//   }
+//
+ .elegant-card {
+        transition: all 0.3s ease-in-out !important;
+        border-radius: 12px !important;
+    }
+    .elegant-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15) !important;
+        cursor: pointer;
+    }
+    .elegant-card:hover {
+    background: #ffffffdd; /* Soft white with transparency */
+    }
+   .elegant-card:hover {
+    transform: translateY(-4px) scale(1.02);
+}

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_linn_inventory_user,linn.inventory.user,model_linn_inventory,base.group_user,1,1,1,1
+access_product_property,access.product.property,model_product_property,base.group_system,1,1,1,1

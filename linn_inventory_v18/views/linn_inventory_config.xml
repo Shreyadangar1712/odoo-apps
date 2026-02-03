@@ -1,0 +1,13 @@
+<odoo>
+    <record id="action_product_kanban_Syncer_dashboard" model="ir.actions.client">
+        <field name="name">Syncer Dashboard</field>
+        <field name="tag">product_syncer_dashboard</field>
+    </record>
+
+
+    <menuitem id="menu_product_syncer_menu"
+              name="Syncer"
+              sequence="10"
+              parent="menu_product_dashboard_root"
+              action="action_product_kanban_Syncer_dashboard"/>
+</odoo>

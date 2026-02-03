@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--rishvi_orders/data/partner_similarity_demo.xml-->
+<odoo>
+    <!-- Demo Partners -->
+    <record id="demo_partner_1" model="res.partner">
+        <field name="name">John Smith</field>
+        <field name="street">123 Main Street</field>
+        <field name="city">New York</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+
+    <record id="demo_partner_2" model="res.partner">
+        <field name="name">Jon Smyth</field>
+        <field name="street">123 Main St.</field>
+        <field name="city">New York</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+
+    <record id="demo_partner_3" model="res.partner">
+        <field name="name">Alice Johnson</field>
+        <field name="street">45 Park Avenue</field>
+        <field name="city">Los Angeles</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+
+    <record id="demo_partner_4" model="res.partner">
+        <field name="name">Alyce Jonson</field>
+        <field name="street">46 Park Avenue</field>
+        <field name="city">Los Angeles</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+
+    <!-- Demo Partner Similarity Records -->
+    <record id="demo_similarity_1" model="partner.similarity">
+        <field name="partner_id" ref="demo_partner_1"/>
+        <field name="existing_id" ref="demo_partner_2"/>
+        <field name="name_similarity">92.5</field>
+        <field name="address_similarity">95.0</field>
+        <field name="merge_disabled">False</field>
+    </record>
+
+    <record id="demo_similarity_2" model="partner.similarity">
+        <field name="partner_id" ref="demo_partner_3"/>
+        <field name="existing_id" ref="demo_partner_4"/>
+        <field name="name_similarity">88.4</field>
+        <field name="address_similarity">81.7</field>
+        <field name="merge_disabled">False</field>
+    </record>
+
+    <!-- Example of already merged record -->
+    <record id="demo_similarity_merged" model="partner.similarity">
+        <field name="partner_id" ref="demo_partner_1"/>
+        <field name="existing_id" ref="demo_partner_2"/>
+        <field name="name_similarity">90.0</field>
+        <field name="address_similarity">92.0</field>
+        <field name="merge_disabled">True</field>
+    </record>
+
+</odoo>

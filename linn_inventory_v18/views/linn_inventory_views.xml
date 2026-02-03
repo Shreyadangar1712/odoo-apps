@@ -1,0 +1,85 @@
+<odoo>
+    <!-- ============================= -->
+    <!--      Kanban & Tree Views      -->
+    <!-- ============================= -->
+
+    <!-- Kanban View -->
+    <record id="view_product_kanban_dashboard" model="ir.ui.view">
+        <field name="name">product.template.kanban.dashboard</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_view o_kanban_dashboard" default_group_by="categ_id">
+                <field name="name"/>
+                <field name="list_price"/>
+                <field name="qty_available"/>
+                <field name="image_1920"/>
+                <field name="default_code"/>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record product_card">
+
+                            <!-- Product Image -->
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('product.template', 'image_1920', record.id.value)"
+                                    alt="Product Image" class="product_img"/>
+                            </div>
+
+                            <!-- Product Info -->
+                            <div class="o_kanban_details">
+                                <strong class="product_name">
+                                    <field name="name"/>
+                                </strong>
+                                <span class="product_sku">SKU: <field name="default_code"/></span>
+                                <hr class="product_divider"/>
+                                <div class="product_meta">
+                                    <span>💲 <b><field name="list_price"/></b></span>
+                                    <span>📦 <b><field name="qty_available"/></b> in stock</span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Tree (List) View -->
+    <!-- List / Tree View -->
+    <record id="view_product_list_dashboard" model="ir.ui.view">
+        <field name="name">product.template.list.dashboard</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <list string="Products" decoration-success="qty_available &gt; 10" decoration-danger="qty_available &lt;= 0">
+                <!-- <field name="image_1920" widget="image" options="{'preview_image': 'image_1920'}"/> -->
+                <field name="name"/>
+                <field name="default_code"/>
+                <field name="list_price"/>
+                <field name="qty_available"/>
+                
+            </list>
+        </field>
+    </record>
+
+
+    <!-- Action linking both views -->
+    <record id="action_product_kanban_dashboard" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="path">linnworks_product</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+    <!-- Add to menu -->
+    <menuitem id="menu_product_dashboard_root"
+              name="Linn Inventory"
+              web_icon="linn_inventory,static/img/inventory.png"
+              sequence="10"/>
+    <menuitem id="menu_product_dashboard_menu"
+              name="Product Dashboard"
+              sequence="10"
+              parent="menu_product_dashboard_root"
+              action="action_product_kanban_dashboard"/>
+
+   
+    <!-- <menuitem id="menu_linnworksproduct_info" name="Product" parent="menu_linnworks_product_root" action="action_product_kanban_dashboard"/> -->
+</odoo>

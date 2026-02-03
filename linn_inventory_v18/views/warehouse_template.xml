@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_warehouse_tree_inherit" model="ir.ui.view">
+            <field name="name">stock.view_warehouse_tree.inherit.custom</field>
+            <field name="model">stock.warehouse</field>
+            <field name="inherit_id" ref="stock.view_warehouse_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//list" position="replace">
+                    <list string="Warehouses">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="linnexternal_id" readonly='1'/>
+                        <!-- <field name="linn_is_fulfillment"/>
+                        <field name="linn_available"/> -->
+                    </list>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Warehouse Form View -->
+        <record id="view_warehouse_form_inherit" model="ir.ui.view">
+            <field name="name">stock.view_warehouse_form.inherit.override</field>
+            <field name="model">stock.warehouse</field>
+            <field name="inherit_id" ref="stock.view_warehouse"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="replace">
+                    <form string="Warehouse">
+                        <sheet>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="linnexternal_id" readonly='1'/>
+                                <!-- <field name="linn_is_fulfillment"/>
+                                <field name="linn_available"/> -->
+                            </group>
+                        </sheet>
+                    </form>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_warehouse_list" model="ir.actions.act_window">
+            <field name="name">Warehouses</field>
+            <field name="path">inventory_warehouses</field>
+            <field name="res_model">stock.warehouse</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+
+        <menuitem id="menu_warehouse_dashboard_menu"
+                name="Warehouse"
+                sequence="11"
+                parent="menu_product_dashboard_root"
+                action="action_warehouse_list"/>
+
+
+</odoo>
