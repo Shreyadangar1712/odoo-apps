@@ -2,7 +2,7 @@
 
 {
     "name": "Rishvi Orders",
-    "version": "19.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "General",
     "depends": ["sale","crm","product","web",'base',"contacts","point_of_sale","linn_inventory_1"],
     "data": [
@@ -22,14 +22,19 @@
     ],
     'assets': {
     'web.assets_backend': [
-            'rishvi_orders_v19/static/src/xml/linn_orders_dashboard.xml',
-            'rishvi_orders_v19/static/src/js/linn_orders_dashboard.js',
-            'rishvi_orders_v19/static/src/scss/linn_orders_dashboard.scss',
+            'rishvi_orders/static/src/xml/linn_orders_dashboard.xml',
+            'rishvi_orders/static/src/js/linn_orders_dashboard.js',
+            'rishvi_orders/static/src/scss/linn_orders_dashboard.scss',
 
     ],
     },
+    "images": [
+    "static/description/cover.jpg",
+],
     "installable": True,
     "application": False,
     "auto_install": False,
     "license": "OPL-1",
 }
+
+
