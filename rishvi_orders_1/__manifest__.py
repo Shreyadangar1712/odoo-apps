@@ -28,6 +28,9 @@
 
     ],
     },
+    "images": [
+    "static/description/cover.jpg",
+],
     "installable": True,
     "application": False,
     "auto_install": True,
