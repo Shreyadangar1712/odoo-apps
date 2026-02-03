@@ -22,9 +22,9 @@
     ],
     'assets': {
     'web.assets_backend': [
-            'rishvi_orders/static/src/xml/linn_orders_dashboard.xml',
-            'rishvi_orders/static/src/js/linn_orders_dashboard.js',
-            'rishvi_orders/static/src/scss/linn_orders_dashboard.scss',
+            'rishvi_orders_1/static/src/xml/linn_orders_dashboard.xml',
+            'rishvi_orders_1/static/src/js/linn_orders_dashboard.js',
+            'rishvi_orders_1/static/src/scss/linn_orders_dashboard.scss',
 
     ],
     },
