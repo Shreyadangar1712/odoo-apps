@@ -4,7 +4,7 @@
     "name": "Point Of Sale Linnworks Integration",
     "version": "18.0.1.0",
     "category": "General",
-    "depends": ['point_of_sale','stock','base','web','linn_inventory_v18','rishvi_orders_v18'],
+    "depends": ['point_of_sale','stock','base','web','linn_inventory_1','rishvi_orders_1'],
     "price": 99.00,
     "currency": "EUR",
     "summary": "Point Of Sale Linnworks Integration",

@@ -4,7 +4,7 @@
     "name": "Rishvi Orders",
     "version": "1.0",
     "category": "General",
-    "depends": ["sale","crm","product","web",'base',"contacts","point_of_sale","linn_inventory"],
+    "depends": ["sale","crm","product","web",'base',"contacts","point_of_sale","linn_inventory_1"],
     "data": [
         "security/ir.model.access.csv",
         "data/ir_cron.xml",
