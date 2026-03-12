@@ -36,6 +36,7 @@
     'company': 'rishvi',
     'maintainer': 'rishvi',
     'website': 'https://rishvi.co.uk/',
+    'depends': ['account', 'event', 'fleet', 'lunch','report_xlsx'],
     'data': [
         'security/hotel_management_odoo_groups.xml',
         'security/hotel_management_odoo_security.xml',
