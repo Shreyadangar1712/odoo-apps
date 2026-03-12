@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    Hotel Room tree view-->
+    <record id="hotel_room_view_tree" model="ir.ui.view">
+        <field name="name">hotel.room.view.tree</field>
+        <field name="model">hotel.room</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="room_type"/>
+                <field name="floor_id"/>
+                <field name="list_price"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    <!--    Hotel Room form view-->
+    <record id="hotel_room_view_form" model="ir.ui.view">
+        <field name="name">hotel.room.view.form</field>
+        <field name="model">hotel.room</field>
+        <field name="arch" type="xml">
+            <form string="Hotel Room">
+                <header>
+                    <field name="status" widget="statusbar" readonly="1"/>
+                </header>
+                <sheet>
+                    <field name="room_image" widget="image"
+                           class="oe_avatar"
+                           options="{'preview_image': 'room_image'}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <h2>
+                            <field name="is_room_avail" invisible="1"/>
+                        </h2>
+                    </div>
+                    <notebook>
+                        <page name="information_hotel_room"
+                              string="Information">
+                            <group>
+                                <group>
+                                    <field name="floor_id" string="Floor"/>
+                                    <field name="user_id" select="2"
+                                           string="Room Manager"/>
+                                    <field name="taxes_ids"
+                                           widget="many2many_tags"
+                                           string="Customer Taxes"/>
+                                </group>
+                                <group>
+                                    <field name="room_type"/>
+                                    <field name="list_price" widget="monetary"
+                                           string="Rent"/>
+                                    <field name="num_person"/>
+                                    <field name="uom_id" invisible="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Amenities">
+                            <group>
+                                <field name="room_amenities_ids"
+                                       widget="many2many_tags"
+                                       string="Room Amenities"/>
+                            </group>
+                        </page>
+
+                        <page string="Descriptions">
+                            <separator string="Description"/>
+                            <field name="description" colspan="4" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                    <field name="activity_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    Hotel Room Kanban view-->
+    <record id="hotel_room_view_kanban" model="ir.ui.view">
+            <field name="name">hotel.room.view.kanban</field>
+            <field name="model">hotel.room</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="room_image"/>
+                    <field name="name"/>
+                    <field name="room_type"/>
+                    <field name="floor_id"/>
+                    <field name="status"/>
+                    <field name="id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img alt="Avatar" t-att-src="kanban_image('hotel.room','room_image',record.id.raw_value)"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <div class="col-6">
+                                        <strong>Name: <field name="name"/></strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <strong>Room Type: <field name="room_type"/></strong>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Floor: <field name="floor_id"/></strong>
+                                    </div>
+                                    <div class="oe_kanban_footer">
+                                        <div class="o_kanban_record_bottom">
+                                            <div class="oe_kanban_bottom_left">
+                                                <t t-if="record.status.raw_value == 'available'">
+                                                    <button name="available_room" type="button" class="btn btn-success" string="Available"/>
+                                                </t>
+                                                <t t-if="record.status.raw_value == 'reserved'">
+                                                    <button name="reserved_room" type="button" class="btn btn-danger" string="Reserved"/>
+                                                </t>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                   
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    <!--    Hotel Room menu action-->
+    <record id="hotel_room_action" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hotel.room</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{'default_is_room_avail':True}</field>
+    </record>
+    <!--Room Menu-->
+    <menuitem id="hotel_room_menu"
+              name="Room"
+              action="hotel_room_action"
+              parent="hotel_config_menu"
+              sequence="4"/>
+</odoo>
+
