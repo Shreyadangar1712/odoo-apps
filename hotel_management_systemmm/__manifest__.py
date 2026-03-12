@@ -65,7 +65,7 @@
     ],
 
     'images': ['static/description/banner.png'],
-    'license': 'LGPL-3',
+    'license': 'OPL-1',
     'installable': True,
     'auto_install': False,
     'application': True,
