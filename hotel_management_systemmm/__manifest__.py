@@ -70,5 +70,5 @@
     'auto_install': False,
     'application': True,
     "price": 50,
-    "currency": "EURO",
+    "currency": "EUR",
 }
