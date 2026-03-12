@@ -65,7 +65,7 @@
     ],
 
     'images': ['static/description/banner.png'],
-    'license': 'OPL-1',
+    'license': 'AGPL-3',
     'installable': True,
     'auto_install': False,
     'application': True,
