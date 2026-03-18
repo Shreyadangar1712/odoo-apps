@@ -24,9 +24,9 @@
 #
 ##########################################################################
 {
-    'name':'Real Estate.',
+    'name':'Real Estate Management',
     'version':'1.1',
-    'category':'Real Estate',
+    'category':'Real Estate Management',
     'sequence':14,
     'summary':'',
     'description':""" Real Estate Management
