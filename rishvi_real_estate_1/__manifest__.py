@@ -41,7 +41,9 @@
         - Integration with Odoo Website
         - Comprehensive Reporting
         """,
-    'author':'Rishvi',
+    'author':'Rishvi Ltd',
+    'company': 'Rishvi Ltd',
+    'maintainer': 'Rishvi Ltd',
     'website':'https://rishvi.co.uk/',
     'depends':['base','account','analytic'],
     'data':[
@@ -121,5 +123,6 @@
             'rishvi_real_estate/static/src/js/place_autocomplete_multi.js',
         ],
     }
+    'images': ['static/description/banner.png'],
 }
 
