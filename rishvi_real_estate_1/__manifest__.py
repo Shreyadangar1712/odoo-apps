@@ -24,12 +24,12 @@
 #
 ##########################################################################
 {
-    'name':'Real Estate Management',
+    'name':'Real Estate Management System',
     'version':'1.1',
-    'category':'Real Estate Management',
+    'category':'Real Estate Management System',
     'sequence':14,
     'summary':'',
-    'description':""" Real Estate Management
+    'description':""" Real Estate Management System
         - Properties Hierarchy
         - Google Maps Integration
         - Units Reservation
