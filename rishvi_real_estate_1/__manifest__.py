@@ -108,6 +108,7 @@
         'data/real_estate_demo.xml',
         'data/mail_template_data.xml',
     ],
+    'images': ['static/description/banner.png'],
     'installable':True,
     'auto_install':False,
     'application':True,
@@ -123,6 +124,6 @@
             'rishvi_real_estate/static/src/js/place_autocomplete_multi.js',
         ],
     }
-    'images': ['static/description/banner.png'],
+    
 }
 
