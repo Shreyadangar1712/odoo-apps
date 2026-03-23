@@ -24,12 +24,12 @@
 #
 ##########################################################################
 {
-    'name':'Real Estate.',
+    'name':'Real Estate Management System',
     'version':'1.1',
-    'category':'Real Estate',
+    'category':'Real Estate Management System',
     'sequence':14,
     'summary':'',
-    'description':""" Real Estate Management
+    'description':""" Real Estate Management System
         - Properties Hierarchy
         - Google Maps Integration
         - Units Reservation
@@ -41,7 +41,9 @@
         - Integration with Odoo Website
         - Comprehensive Reporting
         """,
-    'author':'Rishvi',
+    'author':'Rishvi Ltd',
+    'company': 'Rishvi Ltd',
+    'maintainer': 'Rishvi Ltd',
     'website':'https://rishvi.co.uk/',
     'depends':['base','account','analytic','project','maintenance'],
     'data':[
@@ -106,9 +108,12 @@
         'data/real_estate_demo.xml',
         'data/mail_template_data.xml',
     ],
+    'images': ['static/description/banner.png'],
     'installable':True,
     'auto_install':False,
     'application':True,
+    "price": 200,
+    "currency": "GBP",
 
 }
 
