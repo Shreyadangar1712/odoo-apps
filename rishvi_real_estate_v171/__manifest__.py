@@ -113,7 +113,7 @@
     'auto_install':False,
     'application':True,
     "price": 200,
-    "currency": "GBP",
+    "currency": "EUR",
 
 }
 
