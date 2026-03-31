@@ -25,8 +25,8 @@
 ##########################################################################
 
 {
-    'name': 'Odoo Tally Connector',
-    'summary': 'Connecting Odoo with Tally for strong accounting management!',
+    'name': 'Tally Odoo Connector',
+    'summary': 'Tally Odoo Connector',
     'category': 'Accounting',
     'version': '1.0.1',
     'sequence': 1,
@@ -35,7 +35,7 @@
     'maintainer': 'Rishvi Ltd',
     "license": "AGPL-3",
     'website': 'https://rishvi.co.uk/',
-    'description': """Odoo Tally Connector
+    'description': """Tally Odoo Connector
     Tally connector
     Tally 
     Tally accounts""",
