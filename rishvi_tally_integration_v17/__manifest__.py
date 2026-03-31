@@ -30,8 +30,10 @@
     'category': 'Accounting',
     'version': '1.0.1',
     'sequence': 1,
-    'author': "Rishvi",
-    "license": "Other proprietary",
+    'author':'Rishvi Ltd',
+    'company': 'Rishvi Ltd',
+    'maintainer': 'Rishvi Ltd',
+    "license": "AGPL-3",
     'website': 'https://rishvi.co.uk/',
     'description': """Odoo Tally Connector
     Tally connector
@@ -47,8 +49,11 @@
         'views/sequence.xml',
         'data/demo.xml',
     ],
+    'images': ['static/description/banner.png'],
     "application": True,
     "installable": True,
     "auto_install": False,
     "pre_init_hook": "pre_init_check",
+    "price": 200,
+    "currency": "EUR",
 }
