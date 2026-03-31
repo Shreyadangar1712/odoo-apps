@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="field_mapping_form">
+            <field name="name">Field Mapping Form</field>
+            <field name="model">field.mapping</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Field Mapping">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                            <field name="active" invisible="1"/>
+                        </div>
+                        <field name="mapping_line_ids">
+                            <tree editable="bottom">
+                                <field name="tally_field_id" required="1"
+                                       options="{'no_open': True, 'no_create': True}"/>
+                                <field name="model_field_id" required="not fixed" invisible="fixed"
+                                       options="{'no_open': True, 'no_create': True}"/>
+                                <field name="default" invisible="not fixed"/>
+                                <field name="fixed"/>
+                                <field name="fixed_text" required="fixed" invisible="not fixed"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="field_mapping_tree">
+            <field name="name">Field Mapping</field>
+            <field name="model">field.mapping</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Field Mapping">
+                    <field name="name"/>
+                    <field name="mapping_line_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="tally_field_mapping_action">
+            <field name="name">Tally Field Mapping</field>
+            <field name="res_model">field.mapping</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="field_mapping_tree"/>
+        </record>
+
+        <menuitem name="Field Mapping" id="field_mapping_menu" parent="account_tally_configuration"
+                  action="tally_field_mapping_action" sequence="2"/>
+
+        <record model="ir.ui.view" id="facebook_fields_tree">
+            <field name="name">XML Tags</field>
+            <field name="model">tag.tag</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="tally_xml_action">
+            <field name="name">XML Tags</field>
+            <field name="res_model">tag.tag</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="facebook_fields_tree"/>
+        </record>
+        <menuitem name="XML Tags" id="tally_xml_tags_menu" parent="account_tally_configuration"
+                  action="tally_xml_action" sequence="3"/>
+    </data>
+</odoo>
