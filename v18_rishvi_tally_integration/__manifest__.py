@@ -26,12 +26,14 @@
 
 {
     'name': 'Tally-Odoo Connector',
-    'summary': 'Connecting Tally with Odoo for strong accounting management !',
+    'summary': 'Connecting Tally with Odoo for strong accounting management!',
     'category': 'Accounting',
     'version': '1.0.0',
     'sequence': 1,
-    'author': "Rishvi Ltd",
-    "license": "OPL-1",
+    'author':'Rishvi Ltd',
+    'company': 'Rishvi Ltd',
+    'maintainer': 'Rishvi Ltd',
+    "license": "AGPL-3",
     'website': 'https://rishvi.co.uk/',
     'description': """Tally-Odoo Connector
     Tally connector
@@ -49,7 +51,8 @@
         'views/tally_field_mapping.xml',
         'views/sequence.xml',
     ],
-    'price':50.0,
+    'images': ['static/description/banner.png'],
+    'price':150.0,
     'currency': 'EUR',
     "application": True,
     "installable": True,

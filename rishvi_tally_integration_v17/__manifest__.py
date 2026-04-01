@@ -25,8 +25,8 @@
 ##########################################################################
 
 {
-    'name': 'Tally Odoo Connector',
-    'summary': 'Tally Odoo Connector',
+    'name': 'Tally-Odoo Connector',
+    'summary': 'Tally-Odoo Connector',
     'category': 'Accounting',
     'version': '1.0.1',
     'sequence': 1,
@@ -35,7 +35,7 @@
     'maintainer': 'Rishvi Ltd',
     "license": "AGPL-3",
     'website': 'https://rishvi.co.uk/',
-    'description': """Tally Odoo Connector
+    'description': """Tally-Odoo Connector
     Tally connector
     Tally 
     Tally accounts""",
@@ -54,6 +54,6 @@
     "installable": True,
     "auto_install": False,
     "pre_init_hook": "pre_init_check",
-    "price": 200,
+    "price": 150.0,
     "currency": "EUR",
 }
