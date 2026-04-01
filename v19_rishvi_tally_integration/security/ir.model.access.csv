@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+rishvi_tally_integration.access_res_configuration,access_res_configuration,rishvi_tally_integration.model_res_configuration,base.group_user,1,1,1,1
+rishvi_tally_integration.access_tally_export_invoice,access_tally_export_invoice,rishvi_tally_integration.model_tally_export_invoice,base.group_user,1,1,1,1
+rishvi_tally_integration.access_tag_tag,access_tag_tag,rishvi_tally_integration.model_tag_tag,base.group_user,1,1,1,1
+rishvi_tally_integration.access_field_mapping,access_field_mapping,rishvi_tally_integration.model_field_mapping,base.group_user,1,1,1,1
+rishvi_tally_integration.access_mapping_line,access_mapping_line,rishvi_tally_integration.model_mapping_line,base.group_user,1,1,1,1
+
+

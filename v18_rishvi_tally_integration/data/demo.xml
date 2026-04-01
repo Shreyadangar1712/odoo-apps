@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="tally_tags_3" model="tag.tag">
+			<field name="name">DATE</field>
+		</record>
+		<record id="tally_tags_4" model="tag.tag">
+			<field name="name">NARRATION</field>
+		</record>
+		<record id="tally_tags_8" model="tag.tag">
+			<field name="name">REFERENCE</field>
+		</record>
+		<record id="tally_tags_13" model="tag.tag">
+			<field name="name">ENTEREDBY</field>
+		</record>
+		<record id="tally_tags_21" model="tag.tag">
+			<field name="name">EFFECTIVEDATE</field>
+		</record>
+	</data>
+</odoo>
