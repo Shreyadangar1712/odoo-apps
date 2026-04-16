@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_reason_mobile_punch" model="hr.reason">
+        <field name="code">mobile punch</field>
+        <field name="name">Mobile Punch</field>
+    </record>
+    <record id="hr_reason_forgot_punch" model="hr.reason">
+        <field name="code">forgot to punch</field>
+        <field name="name">Forgot to Punch</field>
+    </record>
+    <record id="hr_reason_other" model="hr.reason">
+        <field name="code">other</field>
+        <field name="name">Other</field>
+    </record>
+</odoo>

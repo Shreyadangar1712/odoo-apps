@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_report_attendance_manager_monthly" model="ir.actions.report">
+        <field name="name">Attendance Manager Monthly Report</field>
+        <field name="model">hr.attendance.manager.monthly.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">rishvi_hrms_module_v19.attendance_manager_monthly_report_template</field>
+        <field name="report_file">rishvi_hrms_module_v19.attendance_manager_monthly_report_template</field>
+        <field name="print_report_name">'Attendance Manager Report - %s' % (object.month_label or 'Current Month')</field>
+    </record>
+
+    <template id="attendance_manager_monthly_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Attendance Manager Monthly Report</h2>
+                        <p>
+                            <strong>Manager:</strong>
+                            <span t-esc="doc.manager_user_id.name or ''"/>
+                        </p>
+                        <p>
+                            <strong>Period:</strong>
+                            <span t-esc="doc.date_from"/>
+                            <span> to </span>
+                            <span t-esc="doc.date_to"/>
+                        </p>
+
+                        <h3>Summary</h3>
+                        <t t-if="doc.summary_line_ids">
+                            <table class="table table-sm table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Employee</th>
+                                        <th>Badge ID</th>
+                                        <th>Present Days</th>
+                                        <th>Late Count</th>
+                                        <th>Early Leave Count</th>
+                                        <th>Worked Hours</th>
+                                        <th>Extra Hours</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc._get_sorted_summary_lines()" t-as="summary">
+                                        <td t-esc="summary.employee_name"/>
+                                        <td t-esc="summary.barcode or '-'"/>
+                                        <td t-esc="summary.present_days"/>
+                                        <td t-esc="summary.late_count"/>
+                                        <td t-esc="summary.early_leave_count"/>
+                                        <td t-esc="doc.format_float_hours(summary.total_worked_hours)"/>
+                                        <td t-esc="doc.format_float_hours(summary.total_extra_hours)"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                        <t t-else="">
+                            <p>No employees are assigned to you as Attendance Manager.</p>
+                        </t>
+
+                        <h3>Daily Detail</h3>
+                        <t t-foreach="doc.get_export_sections()" t-as="section">
+                            <div class="mt16">
+                                <h4 t-esc="section['summary'].employee_name"/>
+                                <p>
+                                    <strong>Badge ID:</strong>
+                                    <span t-esc="section['summary'].barcode or '-'"/>
+                                </p>
+                                <t t-if="section['details']">
+                                    <table class="table table-sm table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Check In</th>
+                                                <th>Check Out</th>
+                                                <th>Status</th>
+                                                <th>Shift</th>
+                                                <th>Worked Hours</th>
+                                                <th>Extra Hours</th>
+                                                <th>Late Minutes</th>
+                                                <th>Early Leave Minutes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="section['details']" t-as="detail">
+                                                <td t-esc="detail.attendance_date"/>
+                                                <td t-esc="doc.format_datetime_for_report(detail.check_in)"/>
+                                                <td t-esc="doc.format_datetime_for_report(detail.check_out)"/>
+                                                <td t-esc="detail.attendance_status"/>
+                                                <td t-esc="detail.attendance_shift or '-'"/>
+                                                <td t-esc="doc.format_float_hours(detail.worked_hours)"/>
+                                                <td t-esc="doc.format_float_hours(detail.extra_hours)"/>
+                                                <td t-esc="detail.late_minutes or 0.0"/>
+                                                <td t-esc="detail.early_minutes or 0.0"/>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </t>
+                                <t t-else="">
+                                    <p>No current-month attendance records.</p>
+                                </t>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

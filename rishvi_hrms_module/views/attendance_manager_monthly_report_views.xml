@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_attendance_manager_monthly_report_form" model="ir.ui.view">
+        <field name="name">hr.attendance.manager.monthly.report.form</field>
+        <field name="model">hr.attendance.manager.monthly.report</field>
+        <field name="arch" type="xml">
+            <form string="Attendance Preview" create="false" edit="false" delete="false">
+                <header>
+                    <button name="action_refresh" string="Preview Current Month" type="object" class="btn-primary"/>
+                    <button name="action_export_pdf" string="Export PDF" type="object"/>
+                    <button name="action_export_xlsx" string="Export XLSX" type="object" class="btn-secondary"/>
+                    <button name="action_export_docx" string="Export DOCX" type="object" class="btn-secondary"/>
+                    <button name="action_send_to_mail" string="Send to Mail as Backgroud " type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-primary" role="alert">
+                        Current month attendance preview for the logged-in employee and employees working under that employee.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="manager_user_id" readonly="1"/>
+                            <field name="month_label" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="date_from" />
+                            <field name="date_to" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="managed_employee_count" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="attendance_record_count" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <div class="alert alert-info" role="alert" invisible="attendance_record_count != 0">
+                        No current month attendance records are available for you or your reporting employees.
+                    </div>
+
+                    <notebook>
+                        <page string="Summary Preview">
+                            <field name="summary_line_ids" nolabel="1" readonly="1">
+                                <list create="0" edit="0" delete="0">
+                                    <field name="employee_name"/>
+                                    <field name="barcode"/>
+                                    <field name="present_days"/>
+                                    <field name="late_count"/>
+                                    <field name="early_leave_count"/>
+                                    <field name="total_worked_hours" widget="float_time"/>
+                                    <field name="total_extra_hours" widget="float_time"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Daily Detail">
+                            <field name="detail_line_ids" nolabel="1" readonly="1">
+                                <list create="0" edit="0" delete="0">
+                                    <field name="employee_name"/>
+                                    <field name="barcode"/>
+                                    <field name="attendance_date"/>
+                                    <field name="check_in"/>
+                                    <field name="check_out"/>
+                                    <field name="attendance_status"/>
+                                    <field name="attendance_shift"/>
+                                    <field name="worked_hours" widget="float_time"/>
+                                    <field name="extra_hours" widget="float_time"/>
+                                    <field name="late_minutes"/>
+                                    <field name="early_minutes"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_attendance_manager_monthly_report_detail_search" model="ir.ui.view">
+        <field name="name">hr.attendance.manager.monthly.report.detail.search</field>
+        <field name="model">hr.attendance.manager.monthly.report.detail</field>
+        <field name="arch" type="xml">
+            <search string="Attendance Detail">
+                <field name="employee_name"/>
+                <field name="attendance_date"/>
+                <field name="attendance_shift"/>
+                <field name="attendance_status"/>
+
+                <filter string="Late" name="late" domain="[('attendance_status', '=', 'Late')]"/>
+                <filter string="Early Leave" name="early_leave" domain="[('attendance_status', '=', 'Early Leave')]"/>
+                <filter string="With Extra Hours" name="extra_hours" domain="[('extra_hours', '&gt;', 0)]"/>
+                <separator/>
+                <group>
+                    <filter string="Employee" name="group_employee" context="{'group_by': 'employee_name'}"/>
+                    <filter string="Date" name="group_date" context="{'group_by': 'attendance_date'}"/>
+                    <filter string="Shift" name="group_shift" context="{'group_by': 'attendance_shift'}"/>
+                    <filter string="Status" name="group_status" context="{'group_by': 'attendance_status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_attendance_manager_monthly_report_detail_list" model="ir.ui.view">
+        <field name="name">hr.attendance.manager.monthly.report.detail.list</field>
+        <field name="model">hr.attendance.manager.monthly.report.detail</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" delete="0" open_form_view="1" class="o_attendance_preview_detail_list">
+                <header>
+                    <button name="action_export_pdf" string="Export PDF" type="object" display="always"/>
+                    <button name="action_export_xlsx" string="Export XLSX" type="object" display="always"/>
+                    <button name="action_export_docx" string="Export DOCX" type="object" display="always"/>
+                    <button name="action_send_to_mail" string="Downlaod File as Backgroud" type="object" class="btn-primary" display="always"/>
+                </header>
+                <field name="employee_id"/>
+                <field name="barcode"/>
+                <field name="attendance_date"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="attendance_status"/>
+                <field name="attendance_shift"/>
+                <field name="worked_hours" widget="float_time"/>
+                <field name="extra_hours" widget="float_time"/>
+                <field name="late_minutes"/>
+                <field name="early_minutes"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_attendance_manager_monthly_report_detail_form" model="ir.ui.view">
+        <field name="name">hr.attendance.manager.monthly.report.detail.form</field>
+        <field name="model">hr.attendance.manager.monthly.report.detail</field>
+        <field name="arch" type="xml">
+            <form string="Attendance Detail" create="false" edit="false" delete="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="1"/>
+                            <field name="barcode" readonly="1"/>
+                            <field name="attendance_date" readonly="1"/>
+                            <field name="attendance_status" readonly="1"/>
+                            <field name="attendance_shift" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="check_in" readonly="1"/>
+                            <field name="check_out" readonly="1"/>
+                            <field name="worked_hours" widget="float_time" readonly="1"/>
+                            <field name="extra_hours" widget="float_time" readonly="1"/>
+                            <field name="late_minutes" readonly="1"/>
+                            <field name="early_minutes" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_attendance_manager_monthly_report" model="ir.actions.act_window">
+        <field name="name">Preview</field>
+        <field name="res_model">hr.attendance.manager.monthly.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="view_id" ref="view_attendance_manager_monthly_report_form"/>
+    </record>
+
+    <record id="action_open_attendance_manager_monthly_report_server" model="ir.actions.server">
+        <field name="name">Preview</field>
+        <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+        <field name="state">code</field>
+        <field name="code">action = env['hr.attendance.manager.monthly.report'].action_open_filter_report()</field>
+    </record>
+
+    <menuitem id="menu_hr_attendance_manager_monthly_report"
+              name="Preview"
+              parent="hr_attendance.menu_hr_attendance_overview"
+              action="action_open_attendance_manager_monthly_report_server"
+              sequence="3"
+              groups="hr_attendance.group_hr_attendance_officer"/>
+</odoo>

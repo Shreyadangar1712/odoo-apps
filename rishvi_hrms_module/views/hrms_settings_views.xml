@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hrms_settings_view_form" model="ir.ui.view">
+        <field name="name">hrms.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <form string="Birthday Settings" class="oe_form_configuration" create="false" delete="false">
+                <sheet>
+                    <h2>Birthday Announcements Default Settings</h2>
+                    <group>
+                        <group>
+                            <field name="birthday_spotlight_text"/>
+                            <field name="birthday_spotlight_role"/>
+                        </group>
+                        <group>
+                            <field name="birthday_spotlight_photo" widget="image" class="oe_avatar" options="{'size': [128, 128]}"/>
+                            <field name="birthday_header_icon" widget="image" class="oe_avatar" options="{'size': [64, 64]}"/>
+                        </group>
+                    </group>
+
+                    <separator string="Today's Birthdays"/>
+                    <div class="alert alert-info" role="alert" style="margin-bottom:16px;">
+                        <i class="fa fa-birthday-cake" style="margin-right:6px;"/>
+                        <strong>
+                            <field name="today_birthday_count" readonly="1" nolabel="1"/>
+                            employee(s) have birthday today!
+                        </strong>
+                    </div>
+                    <group>
+                        <field name="today_birthday_employee_ids"
+                               widget="many2many_tags"
+                               readonly="1"
+                               nolabel="1"
+                               options="{'color_field': 'color'}"
+                               style="margin-bottom:12px;"/>
+                    </group>
+
+                    <separator string="Send Birthday Announcement"/>
+                    <group>
+                        <field name="birthday_send_to_all_today"/>
+                    </group>
+                    <group>
+                        <field name="spotlight_employee_ids"
+                               widget="many2many_tags"
+                               nolabel="1"
+                               options="{'no_create': True, 'color_field': 'color'}"
+                               domain="[('id', 'in', today_birthday_employee_ids)]"
+                               invisible="birthday_send_to_all_today"
+                               placeholder="Select one or more employees..."/>
+                    </group>
+                    <group>
+                        <group/>
+                        <group>
+                            <button name="action_open_birthday_wizard"
+                                    string="Send Announcement"
+                                    type="object"
+                                    class="btn-primary"
+                                    icon="fa-paper-plane"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hrms_settings" model="ir.actions.act_window">
+        <field name="name">Birthday Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="view_id" ref="hrms_settings_view_form"/>
+    </record>
+
+    <menuitem id="menu_hrms_settings_root" name="HRMS Settings" groups="base.group_user" web_icon="rishvi_hrms_module_v19,static/description/hrms.png" sequence="999"/>
+    <menuitem id="menu_hrms_birthday_settings" name="Birthday Settings" parent="menu_hrms_settings_root" action="action_hrms_settings" sequence="20" groups="base.group_user"/>
+
+    <record id="hrms_absent_reminder_view_form" model="ir.ui.view">
+        <field name="name">hrms.absent.reminder.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority">2000</field>
+        <field name="arch" type="xml">
+            <form string="Absent Reminder" class="oe_form_configuration" create="false" delete="false">
+                <sheet>
+                    <h2>Absence Reminders</h2>
+                    <group>
+                        <group>
+                            <field name="absent_reminder_month"/>
+                            <field name="absent_reminder_year"/>
+                        </group>
+                        <group/>
+                    </group>
+
+                    <separator string="Send Check / Reminders"/>
+                    <group>
+                        <field name="absent_reminder_send_to_all"/>
+                    </group>
+                    <group>
+                        <field name="absent_reminder_employee_ids"
+                               widget="many2many_tags"
+                               nolabel="1"
+                               options="{'no_create': True, 'color_field': 'color'}"
+                               invisible="absent_reminder_send_to_all"
+                               placeholder="Select employees to notify..."/>
+                    </group>
+                    <group>
+                        <group/>
+                        <group>
+                            <button name="action_send_absent_reminder"
+                                    string="Send Reminder"
+                                    type="object"
+                                    class="btn-primary"
+                                    icon="fa-paper-plane"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hrms_absent_reminder" model="ir.actions.act_window">
+        <field name="name">Monthly Absent Reminder</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="view_id" ref="hrms_absent_reminder_view_form"/>
+    </record>
+
+    <record id="hrms_attendance_alerts_view_form" model="ir.ui.view">
+        <field name="name">hrms.attendance.alerts.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority">3000</field>
+        <field name="arch" type="xml">
+            <form string="Attendance Alerts" class="oe_form_configuration" create="false" delete="false">
+                <sheet>
+                    <h2>Daily Attendance Notifications</h2>
+                    <group>
+                        <group string="Late Coming (Daily)">
+                            <field name="late_coming_notification_enabled"/>
+                            <field name="late_coming_send_to_all"/>
+                            <field name="late_coming_recipient"/>
+                            <field name="late_coming_employee_ids"
+                                   widget="many2many_tags"
+                                   nolabel="1"
+                                   options="{'no_create': True, 'color_field': 'color'}"
+                                   invisible="late_coming_send_to_all"
+                                   placeholder="Select employees for late coming alerts..."/>
+                            <button name="action_send_daily_late_coming_notifications"
+                                    string="Send Late Coming Alerts"
+                                    type="object"
+                                    class="btn-primary"
+                                    icon="fa-paper-plane"/>
+                        </group>
+                        <group string="Early Going (Daily)">
+                            <field name="early_going_notification_enabled"/>
+                            <field name="early_going_send_to_all"/>
+                            <field name="early_going_recipient"/>
+                            <field name="early_going_employee_ids"
+                                   widget="many2many_tags"
+                                   nolabel="1"
+                                   options="{'no_create': True, 'color_field': 'color'}"
+                                   invisible="early_going_send_to_all"
+                                   placeholder="Select employees for early going alerts..."/>
+                            <button name="action_send_daily_early_going_notifications"
+                                    string="Send Early Going Alerts"
+                                    type="object"
+                                    class="btn-primary"
+                                    icon="fa-paper-plane"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hrms_attendance_alerts" model="ir.actions.act_window">
+        <field name="name">Backend Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="view_id" ref="hrms_attendance_alerts_view_form"/>
+    </record>
+
+    <menuitem id="menu_hrms_absent_reminder" name="Absent Reminder" parent="menu_hrms_settings_root" action="action_hrms_absent_reminder" sequence="30" groups="base.group_user"/>
+    <menuitem id="menu_hrms_attendance_alerts" name="Attendance Alerts" parent="menu_hrms_settings_root" action="action_hrms_attendance_alerts" sequence="40" groups="base.group_user"/>
+</odoo>

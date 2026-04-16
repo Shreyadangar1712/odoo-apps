@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_shift,hr.shift,model_hr_shift,,1,1,1,1
+access_hr_reason,hr.reason,model_hr_reason,,1,1,1,1
+access_hr_attendance_manager_monthly_report_officer,hr.attendance.manager.monthly.report,model_hr_attendance_manager_monthly_report,hr_attendance.group_hr_attendance_officer,1,1,1,1
+access_hr_attendance_manager_monthly_report_line_officer,hr.attendance.manager.monthly.report.line,model_hr_attendance_manager_monthly_report_line,hr_attendance.group_hr_attendance_officer,1,1,1,1
+access_hr_attendance_manager_monthly_report_detail_officer,hr.attendance.manager.monthly.report.detail,model_hr_attendance_manager_monthly_report_detail,hr_attendance.group_hr_attendance_officer,1,1,1,1
+access_hr_attendance_manager_monthly_mail_job_officer,hr.attendance.manager.monthly.mail.job,model_hr_attendance_manager_monthly_mail_job,hr_attendance.group_hr_attendance_officer,1,1,1,1
+access_res_config_settings_internal_user,res.config.settings internal user,base.model_res_config_settings,base.group_user,1,1,1,0
+access_ir_actions_act_window_hrms,ir actions window hrms,base.model_ir_actions_act_window,base.group_user,1,0,0,0
+access_ir_ui_view_hrms,ir ui view hrms,base.model_ir_ui_view,base.group_user,1,0,0,0
+access_res_company_hrms_settings_user,res.company hrms settings user,base.model_res_company,rishvi_hrms_module_v19.group_hrms_settings_user,1,1,0,0

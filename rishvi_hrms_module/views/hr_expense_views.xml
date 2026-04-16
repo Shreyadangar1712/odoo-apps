@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_hr_expense_form_inherit_travel_fields" model="ir.ui.view">
+        <field name="name">hr.expense.form.inherit.travel.fields</field>
+        <field name="model">hr.expense</field>
+        <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="travel_date_to" required="1" readonly="not is_editable"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_mode']/ancestor::div[@id='payment_mode']" position="after">
+                <group string="Travel Details" colspan="2">
+                    <group>
+                        <!-- <field name="travel_date_from" required="1" readonly="not is_editable"/> -->
+                        <field name="travel_mode" required="1" readonly="not is_editable"/>
+                    </group>
+                    <group>
+                        <field name="fixed_kilometer_distance" required="1" readonly="not is_editable"/>
+                        <field name="maximum_amount" required="1" widget="monetary"
+                               options="{'currency_field': 'company_currency_id'}"
+                               readonly="not is_editable"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

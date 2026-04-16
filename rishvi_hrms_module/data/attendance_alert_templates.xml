@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="late_coming_alert_email_template" model="mail.template">
+            <field name="name">Daily Late Coming Alert</field>
+            <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+            <field name="subject">Late Coming Alert - {{ object.employee_id.name or '' }}</field>
+            <field name="use_default_to" eval="False"/>
+            <field name="email_from">{{ user.email_formatted or object.employee_id.company_id.email or '' }}</field>
+            <field name="body_html" type="html">
+<div style="margin:0;padding:0;background-color:#f4f6f9;font-family:Helvetica,Arial,sans-serif;">
+  <table width="100%" cellspacing="0" cellpadding="0" style="padding:24px 0;background-color:#f4f6f9;">
+    <tr><td align="center">
+      <table width="640" cellspacing="0" cellpadding="0" style="background:#ffffff;border-radius:12px;overflow:hidden;">
+        <tr>
+          <td style="background:#8e2b2b;padding:28px 32px;color:#ffffff;">
+            <h2 style="margin:0;font-size:22px;">Late Coming Alert</h2>
+            <p style="margin:8px 0 0 0;font-size:14px;">Daily attendance exception notification</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:28px 32px;color:#334155;">
+            <p>Employee: <strong><t t-out="object.employee_id.name or ''"/></strong></p>
+            <p>Check In: <strong><t t-out="object.check_in_local or ''"/></strong></p>
+            <p>Late Duration (HH:MM): <strong><t t-out="object.late_duration or '00:00'"/></strong></p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</div>
+            </field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+        <record id="early_going_alert_email_template" model="mail.template">
+            <field name="name">Daily Early Going Alert</field>
+            <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+            <field name="subject">Early Going Alert - {{ object.employee_id.name or '' }}</field>
+            <field name="use_default_to" eval="False"/>
+            <field name="email_from">{{ user.email_formatted or object.employee_id.company_id.email or '' }}</field>
+            <field name="body_html" type="html">
+<div style="margin:0;padding:0;background-color:#f4f6f9;font-family:Helvetica,Arial,sans-serif;">
+  <table width="100%" cellspacing="0" cellpadding="0" style="padding:24px 0;background-color:#f4f6f9;">
+    <tr><td align="center">
+      <table width="640" cellspacing="0" cellpadding="0" style="background:#ffffff;border-radius:12px;overflow:hidden;">
+        <tr>
+          <td style="background:#1f4b8f;padding:28px 32px;color:#ffffff;">
+            <h2 style="margin:0;font-size:22px;">Early Going Alert</h2>
+            <p style="margin:8px 0 0 0;font-size:14px;">Daily attendance exception notification</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:28px 32px;color:#334155;">
+            <p>Employee: <strong><t t-out="object.employee_id.name or ''"/></strong></p>
+            <p>Check Out: <strong><t t-out="object.check_out_local or ''"/></strong></p>
+            <p>Early Duration (HH:MM): <strong><t t-out="object.early_duration or '00:00'"/></strong></p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</div>
+            </field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+        <record id="ir_cron_daily_late_coming_notifications" model="ir.cron">
+            <field name="name">Attendance: Daily Late Coming Notification</field>
+            <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_send_daily_late_coming_notifications()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="ir_cron_daily_early_going_notifications" model="ir.cron">
+            <field name="name">Attendance: Daily Early Going Notification</field>
+            <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_send_daily_early_going_notifications()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>

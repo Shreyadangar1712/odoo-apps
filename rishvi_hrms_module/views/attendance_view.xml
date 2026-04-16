@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_attendance_form_inherit_shift" model="ir.ui.view">
+        <field name="name">attendance.form.shift</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='worked_hours']" position="after">
+                <field name="attendance_shift"/>
+                <field name="change_shift" />
+                <field name="form_date" invisible="not change_shift"/>
+                <field name="to_date" invisible="not change_shift"/>
+                <field name="remark" />
+                <field name="reason" required="employee_id_reason_required"/>
+
+                <!-- Invisible field to support the required condition -->
+                <!-- <field name="employee_id_reason_required" /> -->
+            </xpath>
+        </field>
+    </record>  
+
+    <record id="view_attendance_search_inherit_month" model="ir.ui.view">
+        <field name="name">hr.attendance.search.month</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='check_in_filter']" position="after">
+                <filter name="filter_current_month" string="Current Month" 
+                        domain="[('check_in', '&gt;=', context_today().strftime('%Y-%m-01')), 
+                                 ('check_in', '&lt;', (context_today() + relativedelta(months=1)).strftime('%Y-%m-01'))]"/>
+            </xpath>
+        </field>    
+    </record>
+
+    <record id="hr_attendance.hr_attendance_action" model="ir.actions.act_window">
+        <field name="context">{'search_default_groupby_name': 1, 'search_default_employee': 2, 'search_default_filter_current_month': 1}</field>
+    </record>
+
+    <record id="view_attendance_tree_inherit_color" model="ir.ui.view">
+        <field name="name">attendance.tree.color</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_open_current_month_preview"
+                        string="Preview"
+                        type="object"
+                        class="btn-primary"
+                        display="always"/>
+            </xpath>
+            <xpath expr="//list" position="attributes">
+                <attribute name="decoration-success">worked_hours &gt;= 8</attribute>
+                <attribute name="decoration-warning">worked_hours &gt;= 4 and worked_hours &lt; 8</attribute>
+                <attribute name="decoration-danger">worked_hours &lt;= 2</attribute>
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="after">
+                <field name="attendance_shift"/>
+                <field name="employee_allow_overtime" column_invisible="True"/>
+            </xpath>
+            <xpath expr="//field[@name='worked_hours']" position="attributes">
+                <attribute name="column_invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='overtime_hours']" position="attributes">
+                <attribute name="column_invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='validated_overtime_hours']" position="attributes">
+                <attribute name="column_invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='validated_overtime_hours']" position="attributes">
+                <attribute name="invisible">not employee_allow_overtime</attribute>
+            </xpath>
+            <xpath expr="//field[@name='worked_hours']" position="after">
+                <field name="custom_worked_hours" widget="float_time"/>
+                <field name="custom_extra_hours" widget="float_time" invisible="not employee_allow_overtime"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+<!-- regularization -->

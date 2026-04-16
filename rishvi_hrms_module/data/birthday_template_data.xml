@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="birthday_spotlight_email_template" model="mail.template">
+            <field name="name">Birthday Spotlight</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="subject">Happy Birthday {{ object.name }}!</field>
+            <field name="body_html" type="html">
+<div style="margin:0;padding:0;background-color:#f4f6f9;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellspacing="0" cellpadding="0" style="background-color:#f4f6f9;padding:24px 0;">
+    <tr><td align="center">
+      <table width="600" cellspacing="0" cellpadding="0"
+             style="background-color:#ffffff;border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.09);">
+        <tr>
+          <td align="center" style="background:linear-gradient(135deg,#714B67 0%,#e91e8c 100%);padding:40px 24px;">
+            <t t-if="env.context.get('has_header')">
+                <img t-attf-src="cid:{{ env.context.get('header_cid') }}"
+                     width="80" style="max-height:80px;margin-bottom:15px;display:block;" alt="Header Icon"/><br/>
+            </t>
+            <h1 style="color:#ffffff;margin:0;font-size:28px;letter-spacing:2px;">Happy Birthday!</h1>
+            <p style="color:#fce4ec;margin:8px 0 0 0;font-size:16px;">Wishing you a wonderful day!</p>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding:32px 36px 16px 36px;">
+            <t t-if="env.context.get('has_photo')">
+                <img t-attf-src="cid:{{ env.context.get('photo_cid') }}"
+                     width="180" height="180"
+                     style="width:180px;height:180px;object-fit:cover;border-radius:50%;border:5px solid #714B67;margin-bottom:16px;display:block;"
+                     t-att-alt="object.name"/>
+            </t>
+            <h2 style="color:#2c3e50;margin:0;font-size:24px;"><t t-out="object.name"/></h2>
+            <p style="color:#7f8c8d;margin:6px 0 0 0;font-size:15px;"><t t-out="env.context.get('spotlight_role', '')"/></p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:16px 36px 32px 36px;text-align:center;">
+            <div style="font-style:italic;background:#fff9e6;padding:20px;border-radius:8px;border-left:4px solid #f1c40f;text-align:left;color:#34495e;font-size:15px;line-height:1.7;">
+              <t t-out="env.context.get('spotlight_message', '')"/>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="background:#f4f6f9;padding:16px 36px;border-top:1px solid #e8e8e8;text-align:center;">
+            <p style="color:#aaa;margin:0;font-size:12px;">
+              With love from <strong><t t-out="object.company_id.name"/></strong> HR Team
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</div>
+            </field>
+            <field name="lang">{{ object.lang }}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+    </data>
+</odoo>

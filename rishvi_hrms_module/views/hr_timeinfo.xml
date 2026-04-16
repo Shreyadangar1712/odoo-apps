@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_timeinfo_form_inherit" model="ir.ui.view">
+        <field name="name">hr.timeinfo.form.inherit</field>
+        <field name="model">hr.leave</field>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='request_date_from']" position="after">
+                <field name="holiday_status_requires_allocation" invisible="1"/>
+                <div class="alert alert-info mt-2" role="alert" invisible="not holiday_status_requires_allocation">
+                    <strong>Current Balance:</strong>
+                    <field name="virtual_remaining_leaves" widget="float" digits="[3,2]" class="oe_inline"/>
+                    <span class="mx-1">/</span>
+                    <field name="max_leaves" widget="float" digits="[3,2]" class="oe_inline"/>
+                    <span class="ms-1">Days</span>
+                </div>
+            </xpath>
+            <xpath expr="//sheet//group" position="inside">
+                <field name="reason"/>
+                <field name="remark"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
