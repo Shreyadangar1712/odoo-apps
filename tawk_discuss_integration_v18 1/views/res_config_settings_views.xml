@@ -1,0 +1,80 @@
+<odoo>
+    <record id="action_tawk_discuss_sync_history" model="ir.actions.server">
+        <field name="name">Sync History Now</field>
+        <field name="model_id" ref="base.model_res_config_settings"/>
+        <field name="state">code</field>
+        <field name="code">action = env['tawk.discuss.actions'].create({}).action_sync_history_now()</field>
+    </record>
+
+    <record id="res_config_settings_view_form_tawk_discuss" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.tawk.discuss</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="Tawk Discuss" name="tawk_discuss_integration"
+                     groups="tawk_discuss_integration.group_tawk_discuss_manager">
+                    <block title="Connection Settings">
+                        <setting string="Enable Tawk Integration">
+                            <field name="tawk_enabled"/>
+                        </setting>
+                        <setting string="Tawk API Key">
+                            <field name="tawk_api_key" password="True"/>
+                        </setting>
+                        <setting string="Access Token">
+                            <field name="tawk_access_token" password="True"/>
+                        </setting>
+                        <setting string="Property ID">
+                            <field name="tawk_property_id"/>
+                        </setting>
+                        <setting string="Webhook Secret">
+                            <field name="tawk_webhook_secret" password="True"/>
+                        </setting>
+                        <setting string="Parent Channel Name">
+                            <field name="tawk_parent_channel_name"/>
+                        </setting>
+                        <setting string="Allowed Internal Group">
+                            <field name="tawk_group_id"/>
+                        </setting>
+                        <setting string="Parent Tawk Channel">
+                            <field name="tawk_parent_channel_id" readonly="1"/>
+                        </setting>
+                    </block>
+
+                    <block title="History Sync">
+                        <setting string="History API Method">
+                            <field name="tawk_history_method"/>
+                        </setting>
+                        <setting string="History Sync Since">
+                            <field name="tawk_history_since"/>
+                        </setting>
+                    </block>
+
+                    <block title="Quick Actions">
+                        <button name="action_test_connection"
+                                type="object"
+                                string="Test Connection"
+                                class="btn btn-primary"/>
+
+                        <button name="action_prepare_parent_channel"
+                                type="object"
+                                string="Create / Sync Tawk Channel"
+                                class="btn btn-secondary"/>
+
+                        <button name="%(action_tawk_discuss_sync_history)d"
+                                type="action"
+                                string="Sync History Now"
+                                class="btn btn-secondary"/>
+
+                        <div class="mt16">
+                            <div class="o_form_label">Webhook URL</div>
+                            <div>
+                                <code>/tawk_discuss/webhook</code>
+                            </div>
+                        </div>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

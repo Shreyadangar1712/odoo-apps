@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="tawk_discuss_integration.TawkDiscussSidebar">
+        <div class="d-flex flex-column flex-grow-0 gap-1 mt-2">
+            <div class="o-mail-DiscussSidebarCategory d-flex align-items-center mt-1 me-2">
+                <button class="o-mail-DiscussSidebarCategory-toggler btn btn-link text-reset flex-grow-1 d-flex p-0 text-start opacity-100-hover opacity-75 mx-1 align-items-baseline"
+                        t-on-click="toggleSection">
+                    <span class="o-mail-DiscussSidebarCategory-icon o-xsmaller mx-1">
+                        <i t-att-class="state.open ? 'oi oi-chevron-down' : 'oi oi-chevron-right'"/>
+                    </span>
+                    <span class="fw-bold text-uppercase o-xsmaller user-select-none text-muted">
+                        Tawk
+                    </span>
+                </button>
+            </div>
+
+            <t t-if="state.open">
+                <t t-if="state.threads.length">
+                    <t t-foreach="state.threads" t-as="thread" t-key="thread.id">
+                        <button class="o-mail-DiscussSidebar-item btn d-flex align-items-center px-0 border-0 rounded-2 fw-normal text-reset mx-3 py-0"
+                                t-on-click="() => this.openThread(thread)">
+                            <span class="fa fa-user-o mx-2"/>
+                            <div class="me-2 text-truncate small" style="line-height: 1.65;" t-esc="thread.name"/>
+                            <div t-attf-class="flex-grow-1 {{ thread.unread_count ? '' : 'me-3' }}"/>
+                            <span t-if="thread.unread_count"
+                                  class="o-mail-DiscussSidebar-badge o-discuss-badge badge rounded-pill fw-bold"
+                                  t-esc="thread.unread_count"/>
+                        </button>
+                    </t>
+                </t>
+                <t t-else="">
+                    <div class="mx-3 py-1 text-muted small">
+                        No Tawk chats
+                    </div>
+                </t>
+            </t>
+        </div>
+    </t>
+</templates>

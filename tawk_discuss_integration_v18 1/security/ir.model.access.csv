@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tawk_discuss_thread_manager,tawk.discuss.thread manager,model_tawk_discuss_thread,tawk_discuss_integration.group_tawk_discuss_manager,1,1,1,1
+access_tawk_discuss_message_manager,tawk.discuss.message manager,model_tawk_discuss_message,tawk_discuss_integration.group_tawk_discuss_manager,1,1,1,1
+access_tawk_discuss_webhook_log_manager,tawk.discuss.webhook.log manager,model_tawk_discuss_webhook_log,tawk_discuss_integration.group_tawk_discuss_manager,1,1,1,1
+access_tawk_discuss_actions_manager,tawk.discuss.actions manager,model_tawk_discuss_actions,tawk_discuss_integration.group_tawk_discuss_manager,1,1,1,1

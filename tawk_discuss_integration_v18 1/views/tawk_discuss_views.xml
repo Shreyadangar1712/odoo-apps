@@ -1,0 +1,133 @@
+<odoo>
+    <record id="view_tawk_discuss_thread_tree" model="ir.ui.view">
+        <field name="name">tawk.discuss.thread.tree</field>
+        <field name="model">tawk.discuss.thread</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="tawk_chat_id"/>
+                <field name="visitor_name"/>
+                <field name="visitor_email"/>
+                <field name="status"/>
+                <field name="last_message_time"/>
+                <button name="action_open_discuss_channel" type="object" string="Open Discuss" class="btn-primary"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tawk_discuss_thread_form" model="ir.ui.view">
+        <field name="name">tawk.discuss.thread.form</field>
+        <field name="model">tawk.discuss.thread</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_open_discuss_channel" type="object" string="Open Discuss" class="btn-primary"/>
+                    <button name="action_create_missing_initial_message"
+                            type="object"
+                            string="Create Missing Initial Message"
+                            class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="tawk_chat_id"/>
+                            <field name="visitor_name"/>
+                            <field name="visitor_email"/>
+                            <field name="status"/>
+                        </group>
+                        <group>
+                            <field name="created_on"/>
+                            <field name="updated_on"/>
+                            <field name="last_message_time"/>
+                            <field name="parent_channel_id"/>
+                            <field name="channel_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Messages">
+                            <field name="message_ids">
+                                <list>
+                                    <field name="message_time"/>
+                                    <field name="sender_type"/>
+                                    <field name="sender_name"/>
+                                    <field name="message_type"/>
+                                    <field name="body"/>
+                                    <field name="mail_message_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Webhook Logs">
+                            <field name="webhook_log_ids">
+                                <list>
+                                    <field name="received_at"/>
+                                    <field name="event"/>
+                                    <field name="status"/>
+                                    <field name="error_message"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tawk_discuss_message_tree" model="ir.ui.view">
+        <field name="name">tawk.discuss.message.tree</field>
+        <field name="model">tawk.discuss.message</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="thread_id"/>
+                <field name="message_time"/>
+                <field name="sender_type"/>
+                <field name="sender_name"/>
+                <field name="message_type"/>
+                <field name="body"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tawk_discuss_webhook_log_tree" model="ir.ui.view">
+        <field name="name">tawk.discuss.webhook.log.tree</field>
+        <field name="model">tawk.discuss.webhook.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="received_at"/>
+                <field name="event"/>
+                <field name="chat_id"/>
+                <field name="thread_id"/>
+                <field name="status"/>
+                <field name="error_message"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_tawk_discuss_threads" model="ir.actions.act_window">
+        <field name="name">Tawk Threads</field>
+        <field name="res_model">tawk.discuss.thread</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_tawk_discuss_messages" model="ir.actions.act_window">
+        <field name="name">Tawk Messages</field>
+        <field name="res_model">tawk.discuss.message</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <record id="action_tawk_discuss_webhook_logs" model="ir.actions.act_window">
+        <field name="name">Webhook Logs</field>
+        <field name="res_model">tawk.discuss.webhook.log</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="menu_tawk_discuss_root" name="Tawk Discuss"
+              groups="tawk_discuss_integration.group_tawk_discuss_manager"/>
+    <menuitem id="menu_tawk_discuss_threads" name="Threads" parent="menu_tawk_discuss_root"
+              action="action_tawk_discuss_threads" groups="tawk_discuss_integration.group_tawk_discuss_manager"/>
+    <menuitem id="menu_tawk_discuss_messages" name="Messages" parent="menu_tawk_discuss_root"
+              action="action_tawk_discuss_messages" groups="tawk_discuss_integration.group_tawk_discuss_manager"/>
+    <menuitem id="menu_tawk_discuss_webhook_logs" name="Webhook Logs" parent="menu_tawk_discuss_root"
+              action="action_tawk_discuss_webhook_logs" groups="tawk_discuss_integration.group_tawk_discuss_manager"/>
+</odoo>
