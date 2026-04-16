@@ -52,6 +52,7 @@
             'rishvi_jewellery_management_system/static/src/js/signup.js',
         ],
     },
+    'images': ['static/description/banner.png'],
     'installable': True,
     'auto_install': False,
     'application': False,
