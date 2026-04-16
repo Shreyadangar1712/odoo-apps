@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>  
+    <template id="my_invoice_change" inherit_id="account.portal_my_invoices" active="True" name="delivery_code" priority="1">
+        <xpath expr="//t[@t-call='portal.portal_layout']" position="replace">
+            <t t-call="portal.portal_layout">
+                    <t t-set="breadcrumbs_searchbar" t-value="True"/>
+                    <t t-call="portal.portal_searchbar">
+                        <t t-set="title">Invoices</t>
+                    </t>
+                    <t t-if="not invoices">
+                        <p class="alert alert-warning">There are currently no invoices and payments for your account.</p>
+                    </t>
+                    <t t-if="invoices" t-call="portal.portal_table">
+                        <thead>
+                            <tr class="active">
+                                <th>Invoice #</th>
+                                <th>Invoice Date</th>
+                                <!--th class='d-none d-md-table-cell'>Due Date</th-->
+                                <th>Payment Status</th>
+                                <th>Tracking ID</th>
+                                <!--th>Delivery Status</th-->
+                                <!--th class="text-end">Amount</th-->
+                                <!--th>Delivery Date</th-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="invoices" t-as="invoice">
+                                <tr>
+                                    <td>
+                                        <a t-att-href="invoice.get_portal_url()" t-att-title="invoice.name">
+                                            <t t-out="invoice.new_invoice_number" t-if="invoice.name != '/'"/>
+                                            <em t-else="">Draft Invoice</em>
+                                        </a>
+                                    </td>
+                                    <td><span t-field="invoice.invoice_date"/></td>
+                                    <!--td class='d-none d-md-table-cell'><span t-field="invoice.invoice_date_due"/></td-->
+                                    <td name="invoice_status">
+                                        <t t-if="invoice.state == 'posted'" name="invoice_status_posted">
+                                            <span t-if="invoice.payment_state in ('paid', 'in_payment')"
+                                                class="badge rounded-pill text-bg-success">
+                                                <i class="fa fa-fw fa-check" aria-label="Paid" title="Paid" role="img"/>
+                                                <span class="d-none d-md-inline"> Paid</span>
+                                            </span>
+                                            <span t-elif="invoice.payment_state == 'reversed'"
+                                                class="badge rounded-pill text-bg-success">
+                                                <i class="fa fa-fw fa-check" aria-label="Reversed" title="Reversed" role="img"/>
+                                                <span class="d-none d-md-inline"> Reversed</span>
+                                            </span>
+                                            <span t-else="" class="badge rounded-pill text-bg-info" name="invoice_status_waiting_for_payment">
+                                                <i class="fa fa-fw fa-clock-o" aria-label="Opened" title="Opened" role="img"/>
+                                                <span class="d-none d-md-inline"> Waiting for Payment</span>
+                                            </span>
+                                        </t>
+                                        <t t-elif="invoice.state == 'cancel'">
+                                            <span class="badge rounded-pill text-bg-warning">
+                                                <i class="fa fa-fw fa-remove" aria-label="Cancelled" title="Cancelled" role="img"/>
+                                                <span class="d-none d-md-inline"> Cancelled</span>
+                                            </span>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <a t-att-href="'/tracking/'+str(invoice.tracking_id)" id="tracking_id" t-att-title="invoice.tracking_id" t-value="invoice.tracking_id">
+                                            <t t-out="invoice.tracking_id" t-if="invoice.tracking_id != '/'"/>
+                                            <em t-else="">Not Generated</em>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purity_units,access_purity_units,model_purity_units,base.group_user,1,1,1,1
+access_stone_master,access_stone_master,model_stone_master,base.group_user,1,1,1,1
+access_metal_master,access_metal_master,model_metal_master,base.group_user,1,1,1,1
+access_stone_description,access_stone_description,model_stone_description,base.group_user,1,1,1,1

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <record model="ir.ui.view" id="call_metal_master_form">
+        <field name="name">metal.master.form</field>
+        <field name="model">metal.master</field>
+        <field name="arch" type="html">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" help="Enter Metal Name" placeholder="e.g Gold or Silver"></field>
+                        <field name="purity" help="Select Purity"></field>
+                        <field name="rate" help="Today's Rate" placeholder="Rate" widget="monetary"></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+
+    <record model="ir.ui.view" id="call_metal_master_tree">
+        <field name="name">metal.master.tree</field>
+        <field name="model">metal.master</field>
+        <field name="arch" type="html">
+             <list multi_edit="1" editable='top' sample="1">
+            <header>
+             <button name="action_set_cost_price" string="Update ALL C.P" class="fa fa-check btn-primary" type="object"/>    
+             <!--button name="refresh_compute__price" string="Refresh Compute price" class="fa fa-check btn-primary" type="object"/>
+             <button name="action_reset_show_price" string="Reset All Show price" class="fa fa-check btn-primary" type="object"/--> 
+            </header>
+                <field name="name"/>
+                <field name="purity"/>
+                <field name="rate"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record model="ir.actions.act_window" id="call_metal_master_action">
+        <field name="name">Metal</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">metal.master</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a your first Metal !
+            </p>
+        </field>
+    </record>
+    <!-- Menu for Metal Master menu-->
+    <menuitem id="call_metal_master_menu" name="Metal Master"
+              groups="sales_team.group_sale_salesman"
+              parent="website_sale.menu_orders"
+              action="call_metal_master_action"/>
+
+</odoo>
