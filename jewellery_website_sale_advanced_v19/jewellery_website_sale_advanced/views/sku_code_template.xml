@@ -1,0 +1,77 @@
+<odoo>
+
+    <!-- Product options: OpenChatter -->
+    <template id="product_sku_code" inherit_id="website_sale.product" active="True" name="sku" priority="1">
+        <xpath expr="//t[@t-call='website_sale.product_price']" position="after">
+            <p t-if="product.sku">
+                <table>
+                    <tr>
+                        <td style="color:black;font-size:12px;">SKU Code -MEH
+                            <span t-esc="product.sku"/>
+                        </td>
+                        <td style="color:white;font-size:12px;">SKU - MEH
+                            <span t-esc="product.sku"/>
+                        </td>
+                        <td style="color:white;font-size:12px;">SKU - MEH
+                            <span t-esc="product.sku"/>
+                        </td>
+                        <td t-if="product.show_bis" style="color:black;font-size:12px;">
+                            <img class="img img-responsive"
+                                 t-att-src="'/jewellery_website_sale_advanced/static/description/hallmark.png'"/>
+                        </td>
+
+                    </tr>
+                </table>
+            </p>
+        </xpath>
+    </template>
+    <template id="product_delivery_code"
+              inherit_id="website_sale.cta_wrapper"
+              name="delivery_code"
+              priority="20">
+
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="after">
+            <div id="product_delivery_code_block" class="mt-3 mb-2">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <input class="residual form-control"
+                           type="text"
+                           name="area_pincode"
+                           id="area_pincode"
+                           pattern="\d{6}"
+                           maxlength="6"
+                           minlength="6"
+                           placeholder="Enter Pincode"
+                           style="max-width: 180px;"/>
+                    <a role="button"
+                       id="check"
+                       name="check"
+                       href="#"
+                       class="btn btn-primary btn_cta">
+                        check
+                    </a>
+                </div>
+                <p id="message_response"
+                   name="message_response"
+                   style="font-weight: normal; color: #07142A; margin-top: 8px;">
+
+                </p>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="related_product_tag" inherit_id="website_sale.product" active="True" name="related_product"
+              priority="1">
+        <xpath expr="//section[@id='product_detail']" position="after">
+            <t t-if="product.alternative_product_ids">
+                <h3 class="o_default_snippet_text" style="text-align: center;">
+                    Explore More Alike&amp;nbsp;
+                    <br/>
+                </h3>
+            </t>
+        </xpath>
+    </template>
+    <template id="hide_login_powered_by_odoo" inherit_id="web.login_layout" name="Hide login Powered by Odoo  ">
+        <xpath expr="//div[@class='card-body']//div[last()]" position="replace">
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+     <record id="view_loyalty_reward_inherit" model="ir.ui.view">
+            <field name="name">product.pricelist.item.form.inherit</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='base']" position="after">
+                    <field name="on_making_cost" string="On Making Cost %"/>
+                    <field name="on_stone_cost" string="On Stone Value %"/>
+                </xpath>
+                <xpath expr="//field[@name='product_tmpl_id']" position="after">
+                    <button name="refresh_compute__price" type="object" class="btn btn-success">Enable</button>
+                </xpath>
+           </field>
+      </record>
+  </data>
+</odoo>

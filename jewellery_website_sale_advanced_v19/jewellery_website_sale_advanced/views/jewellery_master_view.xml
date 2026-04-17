@@ -1,0 +1,86 @@
+<odoo>
+    <data>
+        <record id="view_jewellary_master_inherit" model="ir.ui.view">
+            <field name="name">product.template.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[1]" position="after">
+                    <page string="Jewellery Master" name="jewellery_management_system">
+                        <group>
+                            <group string="Metal Description" name="_metal_description">
+                                <field name="metal_type"/>
+                                <field name="metal_rate" string="Today's Rate" widget="monetary"/>
+                                <field name="metal_color"/>
+                                <field name="metal_pieces" string="Total Pcs"/>
+                                <field name="metal_weight" string="Net weight(gms)"/>
+                                <!--field name="multipier" string="Multipier"/-->
+                                <field name="stone_value_code"/>
+                                <field name="metal_cost_total" string="Total Cost" widget="monetary"/>
+                                <field name="metal_net_weight" string="Gross Weight(gms)"/>
+                                <field name="show_price" widget="boolean_toggle"/>
+                                <field name="show_bis" widget="boolean_toggle"/>
+                                <field name="sku" optional="show"/>
+                            </group>
+                            <group string="Stone Description" name="stone_description">
+                                <field name="stone_detail_ids" groups="sales_team.group_sale_salesman">
+                                    <list editable="top">
+                                        <field name="stone_type" string="Name"/>
+                                        <field name="stone_quantity" string="qty"/>
+                                        <field name="stone_weight" string="weight(Ct)"/>
+                                        <field name="stone_Clarity" string="Clarity"/>
+                                        <field name="stone_color" string="Color"/>
+                                    </list>
+                                    <form>
+                                        <group>
+                                            <field name="stone_type"/>
+                                            <field name="stone_quantity"/>
+                                            <field name="stone_weight"/>
+                                            <field name="stone_Clarity"/>
+                                            <field name="stone_color"/>
+                                        </group>
+                                        <group>
+                                            <field name="stone_discription"/>
+                                        </group>
+
+                                    </form>
+                                </field>
+
+                                <group name="_product_promotional" string="Additional Promotionals">
+                                    <field name="product_text1" string="Text"/>
+                                    <field name="product_text2" string="Text"/>
+                                    <field name="product_text3" string="Text"/>
+                                    <field name="product_text4" string="Text"/>
+                                    <field name="product_text5" string="Text"/>
+                                    <field name="product_text6" string="Text"/>
+                                </group>
+                            </group>
+                            <group string="Cost Description" name="making_description">
+                                <field name="making_cost" string="Making % on Metal"/>
+                                <field name="making_cost_per_gram" string="Making Code"/>
+                                <field name="calculation" string="Total Cost of Jewellary"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="action_set_cost_price" string="Update C.P" class="fa fa-check btn-success"
+                                type="object"/>
+                        <button name="action_reset_product_show_price" string="Reset Discount Price"
+                                class="fa fa-check btn-success" type="object"/>
+                    </header>
+                </xpath>
+            </field>
+        </record>
+        <!--record id="view_jewellary_master_inherit" model="ir.ui.view">
+              <field name="name">product.template.inherit</field>
+              <field name="model">product.template</field>
+              <field name="inherit_id" ref="product.product_template_tree_view"/>
+              <field name="arch" type="xml">
+                  <xpath expr="//field[@name='']" position="after">
+                  </xpath>
+             </field>
+        </record-->
+    </data>
+</odoo>

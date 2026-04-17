@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <template id="sequel_page" name="Index Page">
+            <t t-call="web.layout">
+                <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_cover parallax s_parallax_is_fixed pt96 pb96 bg-black-15 o_cc o_cc5 o_colored_level" data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" style="background-image: none;">
+                    <span class="s_parallax_bg">
+                        <form string="tracking">
+                        <div style="position:absolute; left:0; top:0; width:100%; height:100%;">
+                            <iframe t-att-src="'https://sequel247.com/track/'+str(id)" width="100%" height="100%" marginwidth="0" marginheight="0" frameborder="no" scrolling="auto" style="border-width:0px; ">
+                            </iframe>
+                        </div>
+                        </form>
+                    </span>
+                </section>
+            </div>
+            </t>
+        </template>
+    </data>
+</odoo>

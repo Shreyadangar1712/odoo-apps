@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="my_invoice_change"
+              inherit_id="account.portal_my_invoices"
+              name="Payment on My Invoices"
+              active="True"
+              priority="20">
+
+        <xpath expr="//t[@t-call='portal.portal_table']" position="replace">
+            <t t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Invoice #</th>
+                        <th>Invoice Date</th>
+                        <th>Payment Status</th>
+                        <th>Tracking ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="invoices" t-as="invoice">
+                        <tr>
+                            <td>
+                                <a t-att-href="invoice.get_portal_url()" t-att-title="invoice.name">
+                                    <t t-if="invoice.name != '/' and invoice.new_invoice_number">
+                                        <t t-out="invoice.new_invoice_number"/>
+                                    </t>
+                                    <t t-elif="invoice.name != '/'">
+                                        <t t-out="invoice.name"/>
+                                    </t>
+                                    <em t-else="">Draft Invoice</em>
+                                </a>
+                            </td>
+
+                            <td>
+                                <span t-field="invoice.invoice_date"/>
+                            </td>
+
+                            <td name="invoice_status">
+                                <t t-if="invoice.state == 'posted'">
+                                    <span t-if="invoice.payment_state in ('paid', 'in_payment')"
+                                          class="badge rounded-pill text-bg-success">
+                                        <i class="fa fa-fw fa-check" aria-label="Paid" title="Paid" role="img"/>
+                                        <span class="d-none d-md-inline"> Paid</span>
+                                    </span>
+
+                                    <span t-elif="invoice.payment_state == 'reversed'"
+                                          class="badge rounded-pill text-bg-success">
+                                        <i class="fa fa-fw fa-check" aria-label="Reversed" title="Reversed" role="img"/>
+                                        <span class="d-none d-md-inline"> Reversed</span>
+                                    </span>
+
+                                    <span t-else=""
+                                          class="badge rounded-pill text-bg-info">
+                                        <i class="fa fa-fw fa-clock-o" aria-label="Opened" title="Opened" role="img"/>
+                                        <span class="d-none d-md-inline"> Waiting for Payment</span>
+                                    </span>
+                                </t>
+
+                                <t t-elif="invoice.state == 'cancel'">
+                                    <span class="badge rounded-pill text-bg-warning">
+                                        <i class="fa fa-fw fa-remove" aria-label="Cancelled" title="Cancelled" role="img"/>
+                                        <span class="d-none d-md-inline"> Cancelled</span>
+                                    </span>
+                                </t>
+                            </td>
+
+                            <td>
+                                <t t-if="invoice.tracking_id and invoice.tracking_id != '/'">
+                                    <a t-att-href="'/tracking/%s' % invoice.tracking_id"
+                                       t-att-title="invoice.tracking_id">
+                                        <t t-out="invoice.tracking_id"/>
+                                    </a>
+                                </t>
+                                <em t-else="">Not Generated</em>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </t>
+        </xpath>
+
+    </template>
+</odoo>

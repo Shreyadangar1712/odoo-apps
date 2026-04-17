@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- This record for creating tree view for call for price requests-->
+    <record id="price_unit_tree" model="ir.ui.view">
+        <field name="name">purity.units.view.tree</field>
+        <field name="model">purity.units</field>
+        <field name="arch" type="xml">
+            <list editable="top">
+                <field name="name"/>
+                <field name="unit"/>
+            </list>
+        </field>
+    </record>
+    <!-- This record for creating form view for call for price requests-->
+    <record id="price_unit_view_form" model="ir.ui.view">
+        <field name="name">purity.units.view.form</field>
+        <field name="model">purity.units</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="unit"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- This record for creating menu action  for call for price menu-->
+    <record id="price_unit_action" model="ir.actions.act_window">
+        <field name="name">Purity Units</field>
+        <field name="res_model">purity.units</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a your first Unit !
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu for call for price menu-->
+    <menuitem id="price_unit_menu" name="Purity Units"
+              groups="sales_team.group_sale_salesman"
+              parent="website_sale.menu_orders"
+              action="price_unit_action"/>
+</odoo>
