@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_provider_form" model="ir.ui.view">
+        <field name="name">payment.provider.view.form.inherit.cc.avenue.payment</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='provider_credentials']" position='inside'>
+                <group>
+                    <field name="merchant_key"/>
+                    <field name="access_code"/>
+                    <field name="working_key"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+
+
