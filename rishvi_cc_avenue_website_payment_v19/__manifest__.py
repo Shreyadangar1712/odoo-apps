@@ -26,8 +26,9 @@
 {
     'name': 'CCAvenue Payment Acquirer For eCommerce Website',
     'version': '19.0.1.0.0',
-    'author': "Rishvi",
-    'maintainer': 'Rishvi',
+    'author':'Rishvi Ltd',
+    'company': 'Rishvi Ltd',
+    'maintainer': 'Rishvi Ltd',
     'website': "https://rishvi.co.uk/",
     'images': ['static/description/banner.png'],
     'depends': ['payment', 'account', 'website_sale','base'],
@@ -36,6 +37,7 @@
         'views/cc_avenue_templates.xml',
         'data/payment_provider_data.xml',
     ],
+    'images': ['static/description/banner.png'],
     'external_dependencies': {'python': ['pay_ccavenue']},
     'post_init_hook': 'post_init_hook',
     'uninstall_hook': 'uninstall_hook',
@@ -43,6 +45,6 @@
     'installable': True,
     'auto_install': False,
     'application': False,
-    "price": 0,
+    "price": 50,
     "currency": "EUR",
 }
