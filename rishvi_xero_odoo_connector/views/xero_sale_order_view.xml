@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+<!--        Server action for exporting quotations from odoo to xero-->
+        <record model="ir.actions.server" id="export_quotation_to_xero">
+            <field name="name">Export to XERO</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">if records:
+                   action = records.create_quotation_in_xero()
+            </field>
+        </record>
+
+<!--        Cron for exporting sale orders-->
+        <record id="ir_cron_xero_sale_order" model="ir.cron">
+            <field name="name">Xero Export Sale Order</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model.exportSaleOrder_cron()</field>
+            <field name="user_id" ref="base.user_admin" />
+            <field name="interval_number">25</field>
+            <field name="interval_type">minutes</field>
+            <!-- <field name="numbercall">-1</field> -->
+            <field name="active" eval="False" />
+        </record>
+
+        <record id="xero_sale_order_form_view" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                     <field name="xero_sale_id" readonly="1"/>
+                     <field name="tax_state"  />
+                </xpath>
+                <!-- <xpath expr="/form/sheet/notebook/page[1]/field[@name='order_line']/tree/field[@name='tax_id']" position="replace">
+
+                    <field name="inclusive"  invisible="1"/>
+                    <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('price_include','=', inclusive)]" context="{'default_type_tax_use': 'sale'}" options="{'no_create': True}"/>
+                </xpath> -->
+
+                <xpath expr="//field[@name='order_line']/list/field[@name='tax_ids']" position="replace">
+                    <field name="inclusive"  invisible="1"/>
+                    <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('price_include','=', inclusive)]" context="{'default_type_tax_use': 'sale'}" options="{'no_create': True}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Connection Success -->
+    <record id="connection_success_view" model="ir.ui.view">
+        <field name="name">connection.success.view</field>
+        <field name="model">res.company.message</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Connection Successful">
+                <div class="oe_title">
+                    <h3>Connection Successful</h3>
+                    <p>Your Xero connection has been established successfully.</p>
+                </div>
+                <footer>
+                    <button string="OK" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Import Success -->
+    <record id="import_success_view" model="ir.ui.view">
+        <field name="name">import.success.view</field>
+        <field name="model">res.company.message</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Import Successful">
+                <div class="oe_title">
+                    <h3>Import Completed</h3>
+                    <p>All records have been imported successfully from Xero.</p>
+                </div>
+                <footer>
+                    <button string="OK" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Export Success -->
+    <record id="export_success_view" model="ir.ui.view">
+        <field name="name">export.success.view</field>
+        <field name="model">res.company.message</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Export Successful">
+                <div class="oe_title">
+                    <h3>Export Completed</h3>
+                    <p>Your data has been successfully exported to Xero.</p>
+                </div>
+                <footer>
+                    <button string="OK" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_connection_success_view" model="ir.actions.act_window">
+        <field name="name">Connection Successful</field>
+        <field name="res_model">res.company.message</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="connection_success_view"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

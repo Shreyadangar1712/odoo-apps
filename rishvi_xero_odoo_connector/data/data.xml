@@ -1,0 +1,75 @@
+<odoo>
+    <data>
+
+        <!-- Sales Orders -->
+        <record id="collection_sale_order" model="quick.book.collection">
+            <field name="name">Sale Order</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="field_domain">[('xero_sale_id', '>', 0)]</field>
+        </record>
+
+        <!-- Purchase Orders -->
+        <record id="collection_purchase_order" model="quick.book.collection">
+            <field name="name">Purchase Order</field>
+            <field name="model_id" ref="model_purchase_order"/>
+            <field name="field_domain">[('xero_purchase_id', '>', 0)]</field>
+        </record>
+
+        <!-- Customer Invoices -->
+        <record id="collection_customer_invoice" model="quick.book.collection">
+            <field name="name">Invoices</field>
+            <field name="model_id" ref="model_account_move"/>
+            <field name="field_domain">
+                [('xero_invoice_id', '>', 0), ('move_type', '=', 'out_invoice')]
+            </field>
+        </record>
+
+        <!-- Vendor Bills -->
+        <record id="collection_vendor_bill" model="quick.book.collection">
+            <field name="name">Bills</field>
+            <field name="model_id" ref="model_account_move"/>
+            <field name="field_domain">
+                [('xero_invoice_id', '>', 0), ('move_type', '=', 'in_invoice')]
+            </field>
+        </record>
+
+        <!-- Future Collections
+
+        <record id="collection_customer_payment" model="quick.book.collection">
+            <field name="name">Customer Payments</field>
+            <field name="model_id" ref="model_account_payment"/>
+            <field name="field_domain">[('qbo_payment_id', '!=', False)]</field>
+        </record>
+
+        <record id="collection_vendor_payment" model="quick.book.collection">
+            <field name="name">Vendor Payments</field>
+            <field name="model_id" ref="model_account_payment"/>
+            <field name="field_domain">[('qbo_bill_payment_id', '!=', False)]</field>
+        </record>
+
+        <record id="collection_product" model="quick.book.collection">
+            <field name="name">Products</field>
+            <field name="model_id" ref="model_product_product"/>
+            <field name="field_domain">[('qbo_product_id', '!=', False)]</field>
+        </record>
+
+        <record id="collection_customer" model="quick.book.collection">
+            <field name="name">Customers</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="field_domain">
+                [('qbo_customer_id', '!=', False), ('customer_rank', '>', 0)]
+            </field>
+        </record>
+
+        <record id="collection_vendor" model="quick.book.collection">
+            <field name="name">Vendors</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="field_domain">
+                [('qbo_customer_id', '!=', False), ('supplier_rank', '>', 0)]
+            </field>
+        </record>
+
+        -->
+
+    </data>
+</odoo>

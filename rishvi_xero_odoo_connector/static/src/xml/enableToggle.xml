@@ -1,0 +1,530 @@
+<templates xml:space="preserve">
+
+
+    <t t-name="rishvi_xero_odoo_connector.AutomationPopup">
+
+
+<t t-if="state.showlogsAutomationPopup">
+    <div class="modal fade show d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-m">
+            <div class="modal-content rounded-4">
+
+
+                <!-- Body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row justify-content-center">
+
+                            <!-- Card -->
+                            <!-- <div class="col-md-6 col-lg-5"> -->
+                            <div class="col-md-8 col-lg-7">
+                                <div class="bg-secondary p-4 rounded shadow-md">
+
+                                    <table class="table table-borderless align-middle mb-0">
+                                        <tbody>
+
+                                            <tr>
+                                                <td class="fw-semibold">
+                                                    Auto Cleanup Old Xero Logs (Older than 1 Day)
+                                                </td>
+                                                <td class="text-end">
+                                                    <button class="btn rounded-pill"
+                                                        t-att-class="state.autoCleanlogs ? 'btn-dark' : 'btn-outline-dark'"
+                                                        t-on-click="toggleAutoCleanLogs">
+                                                        <t t-esc="state.autoCleanlogs? 'ON' : 'OFF'"/>
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="fw-semibold">
+                                                    Next Cron Job Execution Time
+                                                </td>
+                                                <td class="text-end">
+                                                    <span>
+                                                        <t t-esc="state.nextExecutionTimeofLogs || 'N/A'"/>
+                                                    </span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="fw-semibold">
+                                                    Trigger theCleanup Manually
+                                                </td>
+                                                <td class="text-end">
+                                                    <button class="btn"
+                                                        t-att-class="state.autoSyncCLearLogs ? 'btn-dark' : 'btn-outline-dark'"
+                                                        t-on-click="syncClearLogsNow">
+                                                        Sync Now
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    
+
+                                </div>
+                                <div class="modal-footer">
+                    <button class="btn btn-dark rounded-pill"
+                            t-on-click="closeClearLogsPopup">
+                        Close
+                    </button>
+                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</t>
+
+
+<t t-if="state.showAutomationTypePopup">
+    <div class="modal fade show d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title">Choose Automation Type</h5>
+                    <button class="btn-close"
+                            t-on-click="closeAutomationTypePopup"/>
+                </div>
+
+                <div class="modal-body text-center">
+                    <div class="d-flex justify-content-center gap-3">
+                        <button class="btn btn-dark rounded-pill px-4"
+                                t-on-click="openSourceAutomation">
+                            Source
+                        </button>
+<!-- 
+                        <button class="btn btn-outline-dark rounded-pill px-4"
+                                t-on-click="openCustomerAutomation">
+                            Customer
+                        </button> -->
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary rounded-pill"
+                            t-on-click="closeAutomationTypePopup">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+</t>
+
+
+<t t-if="state.showAutomationTypePopup">
+    <div class="modal fade show d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title">Choose Automation Type</h5>
+                    <button class="btn-close"
+                            t-on-click="closeAutomationTypePopup"/>
+                </div>
+
+                <div class="modal-body text-center">
+                    <div class="d-flex justify-content-center gap-3">
+                        <button class="btn btn-dark rounded-pill px-4"
+                                t-on-click="openSourceAutomation">
+                            Source
+                        </button>
+<!-- 
+                        <button class="btn btn-outline-dark rounded-pill px-4"
+                                t-on-click="openCustomerAutomation">
+                            Customer
+                        </button> -->
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary rounded-pill"
+                            t-on-click="closeAutomationTypePopup">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+</t>
+
+
+        <t t-if="state.showAutomationPopup">
+
+            <div class="modal fade show d-block" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content rounded-4">
+
+                        
+                        <div class="modal-header d-flex align-items-center justify-content-between">
+   <button type="button"
+        class="btn btn-link text-dark p-0 me-2"
+        t-on-click="backToAutomationType"
+        style="text-decoration: none; font-size: 30px; font-weight: 900; line-height: 1;">
+    &#8592;
+</button>
+
+    <h5 class="modal-title flex-grow-1 text-center m-0">Automation Settings</h5>
+
+    <button class="btn-close"
+            t-on-click="closeAutomationPopup"/>
+</div>
+
+                        <div class="modal-body text-center">
+                 <div class="row g-3">
+
+    <!-- Card 1 -->
+    <div class="col-md-6 col-lg-4">
+        <div class="bg-secondary p-3 rounded">
+            <table class="table table-borderless align-middle">
+                <tbody>
+
+                    <tr>
+                        <td class="fw-semibold text-start">
+                            Auto Sync Invoices to Xero on daily basis
+                        </td>
+                        <td class="text-end">
+                            <button class="btn rounded-pill"
+                                t-att-class="state.autoUpdateInvoices ? 'btn-dark' : 'btn-outline-dark'"
+                                t-on-click="toggleAutoUpdateInvoices">
+                                <t t-esc="state.autoUpdateInvoices ? 'ON' : 'OFF'"/>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="fw-semibold text-start">
+                            Next Cron Job Execution Time
+                        </td>
+                        <td class="text-end">
+                            <p>
+                                <t t-esc="state.nextExecutionTime || 'N/A'"/>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="fw-semibold text-start">
+                            Trigger the Invoice Sync Manually
+                        </td>
+                        <td class="text-end">
+                            <button t-on-click="syncInvoicesNow"
+                                t-att-class="state.autoSyncInvoices ? 'btn btn-dark' : 'btn btn-outline-dark'">
+                                Sync Now
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-6 col-lg-4">
+        <div class="bg-secondary p-3 rounded">
+            <table class="table table-borderless align-middle">
+                <tbody>
+
+                    <tr>
+                        <td class="fw-semibold text-start">
+                            Auto Sync Invoices to Xero on Weekly basis
+                        </td>
+                        <td class="text-end">
+                            <button class="btn rounded-pill"
+                                t-att-class="state.autoUpdateInvoicesWeekly ? 'btn-dark' : 'btn-outline-dark'"
+                                t-on-click="toggleAutoUpdateInvoicesWeekly">
+                                <t t-esc="state.autoUpdateInvoicesWeekly ? 'ON' : 'OFF'"/>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="fw-semibold text-start">
+                            Next Cron Job Execution Time
+                        </td>
+                        <td class="text-end">
+                            <p>
+                                <t t-esc="state.nextExecutionTimeWeekly || 'N/A'"/>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="fw-semibold text-start">
+                            Trigger the Invoice Sync Manually
+                        </td>
+                        <td class="text-end">
+                            <button t-on-click="syncInvoicesNowWeekly"
+                                t-att-class="state.autoSyncInvoicesWeekly ? 'btn btn-dark' : 'btn btn-outline-dark'">
+                                Sync Now
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-6 col-lg-4">
+        <div class="bg-secondary p-3 rounded">
+            <table class="table table-borderless align-middle">
+                <tbody>
+
+                    <tr>
+                        <td class="fw-semibold text-start">
+                            Auto Sync Invoices to Xero on Monthly basis
+                        </td>
+                        <td class="text-end">
+                            <button class="btn rounded-pill"
+                                t-att-class="state.autoUpdateInvoicesMonthly ? 'btn-dark' : 'btn-outline-dark'"
+                                t-on-click="toggleAutoUpdateInvoicesMonthly">
+                                <t t-esc="state.autoUpdateInvoicesMonthly ? 'ON' : 'OFF'"/>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="fw-semibold text-start">
+                            Next Cron Job Execution Time
+                        </td>
+                        <td class="text-end">
+                            <p>
+                                <t t-esc="state.nextExecutionTimeMonthly || 'N/A'"/>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="fw-semibold text-start">
+                            Trigger the Invoice Sync Manually
+                        </td>
+                        <td class="text-end">
+                            <button t-on-click="syncInvoicesNowMonthly"
+                                t-att-class="state.autoSyncInvoicesMonthly ? 'btn btn-dark' : 'btn btn-outline-dark'">
+                                Sync Now
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+
+</div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary rounded-pill"
+                                    t-on-click="closeAutomationPopup">
+                                Close
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-backdrop fade show"></div>
+
+        </t>
+
+
+    <t t-if="state.showCustomerAutomationPopup">
+
+    <div class="modal fade show d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content rounded-4">
+
+        
+                <div class="modal-header d-flex align-items-center justify-content-between">
+  <button type="button"
+        class="btn btn-link text-dark p-0 me-2"
+        t-on-click="backToAutomationType"
+        style="text-decoration: none; font-size: 30px; font-weight: 900; line-height: 1;">
+    &#8592;
+</button>
+
+    <h5 class="modal-title flex-grow-1 text-center m-0">Customer Automation Settings</h5>
+
+    <button class="btn-close"
+            t-on-click="closeCustomerAutomationPopup"/>
+</div>
+
+                <div class="modal-body text-center">
+                    <div class="row g-3">
+
+                        <!-- Card 1 -->
+                    
+                        <div class="col-md-6 col-lg-4">
+                            <div class="bg-secondary p-3 rounded">
+                                <table class="table table-borderless align-middle">
+                                    <tbody>
+
+                                        <tr>
+                                            <td class="fw-semibold text-start">
+                                                Auto Sync Invoices to Xero on Daily Basis by <br/> Customer
+                                            </td>
+                                            <td class="text-end">
+                                                <button class="btn rounded-pill"
+                                                    t-att-class="state.autoUpdateCustomerInvoices ? 'btn-dark' : 'btn-outline-dark'"
+                                                    t-on-click="toggleAutoUpdateCustomerInvoices">
+                                                    <t t-esc="state.autoUpdateCustomerInvoices ? 'ON' : 'OFF'"/>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="fw-semibold text-start">
+                                                Next Cron Job Execution Time
+                                            </td>
+                                            <td class="text-end">
+                                                <p>
+                                                    <t t-esc="state.nextExecutionTimeCustomerDaily || 'N/A'"/>
+                                                </p>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="fw-semibold text-start">
+                                                Trigger the Invoice Sync Manually
+                                            </td>
+                                            <td class="text-end">
+                                                <button t-on-click="syncInvoicesNowDailyByCustomers"
+                                                    t-att-class="state.autoSyncCustomerInvoices ? 'btn btn-dark' : 'btn btn-outline-dark'">
+                                                    Sync Now
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="bg-secondary p-3 rounded">
+                                <table class="table table-borderless align-middle">
+                                    <tbody>
+
+                                        <tr>
+                                            <td class="fw-semibold text-start">
+                                                Auto Sync Invoices to Xero on Weekly Basis by Customer
+                                            </td>
+                                            <td class="text-end">
+                                                <button class="btn rounded-pill"
+                                                    t-att-class="state.autoUpdateCustomerInvoicesWeekly ? 'btn-dark' : 'btn-outline-dark'"
+                                                    t-on-click="toggleAutoUpdateCustomerInvoicesWeekly">
+                                                    <t t-esc="state.autoUpdateCustomerInvoicesWeekly ? 'ON' : 'OFF'"/>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="fw-semibold text-start">
+                                                Next Cron Job Execution Time
+                                            </td>
+                                            <td class="text-end">
+                                                <p>
+                                                    <t t-esc="state.nextExecutionTimeCustomerWeekly || 'N/A'"/>
+                                                </p>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="fw-semibold text-start">
+                                                Trigger the Invoice Sync Manually
+                                            </td>
+                                            <td class="text-end">
+                                                <button t-on-click="syncInvoicesNowWeeklyByCustomers"
+                                                    t-att-class="state.autoSyncCustomerInvoicesWeekly ? 'btn btn-dark' : 'btn btn-outline-dark'">
+                                                    Sync Now
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="bg-secondary p-3 rounded">
+                                <table class="table table-borderless align-middle">
+                                    <tbody>
+
+                                        <tr>
+                                            <td class="fw-semibold text-start">
+                                                Auto Sync Invoices to Xero on Monthly Basis by Customer
+                                            </td>
+                                            <td class="text-end">
+                                                <button class="btn rounded-pill"
+                                                    t-att-class="state.autoUpdateCustomerInvoicesMonthly ? 'btn-dark' : 'btn-outline-dark'"
+                                                    t-on-click="toggleAutoUpdateCustomerInvoicesMonthly">
+                                                    <t t-esc="state.autoUpdateCustomerInvoicesMonthly ? 'ON' : 'OFF'"/>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="fw-semibold text-start">
+                                                Next Cron Job Execution Time
+                                            </td>
+                                            <td class="text-end">
+                                                <p>
+                                                    <t t-esc="state.nextExecutionTimeCustomerMonthly || 'N/A'"/>
+                                                </p>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="fw-semibold text-start">
+                                                Trigger the Invoice Sync Manually
+                                            </td>
+                                            <td class="text-end">
+                                                <button t-on-click="syncInvoicesNowMonthlyByCustomers"
+                                                    t-att-class="state.autoSyncCustomerInvoicesMonthly ? 'btn btn-dark' : 'btn btn-outline-dark'">
+                                                    Sync Now
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary rounded-pill"
+                            t-on-click="closeCustomerAutomationPopup">
+                        Close
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop fade show"></div>
+
+</t>
+</t>
+</templates>

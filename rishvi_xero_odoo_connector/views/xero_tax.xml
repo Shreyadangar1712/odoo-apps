@@ -1,0 +1,46 @@
+<odoo>
+<record id="view_xero_tax_tree" model="ir.ui.view">
+    <field name="name">xero.tax.tree</field>
+    <field name="model">xero.tax</field>
+    <field name="arch" type="xml">
+        <list string="Xero Taxes">
+            <field name="name"/>
+            <field name="xero_tax_type_id"/>
+            <field name="xero_record_taxtype"/>
+            <field name="type_tax_use"/>
+            <field name="amount"/>
+            <field name="amount_type"/>
+            <field name="price_include"/>
+            <field name="price_include_override"/>
+            <field name="company_id"/>
+                <field name="active"/>
+
+        </list>
+    </field>
+</record>
+
+
+
+<!--Search View-->
+<record id="view_xero_tax_search" model="ir.ui.view">
+    <field name="name">xero.tax.search</field>
+    <field name="model">xero.tax</field>
+    <field name="arch" type="xml">
+        <search>
+            <filter name="active" string="Active" domain="[('active','=',True)]"/>
+            <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
+        </search>
+    </field>
+</record>
+
+
+<record id="action_xero_tax" model="ir.actions.act_window">
+    <field name="name">Xero Taxes</field>
+    <field name="res_model">xero.tax</field>
+    <field name="view_mode">list,form</field>
+    <field name="search_view_id" ref="view_xero_tax_search"/>
+</record>
+
+
+
+</odoo>

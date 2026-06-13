@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+<record id="xero_account_list_view" model="ir.ui.view">
+    <field name="name">xero.account.list</field>
+    <field name="model">xero.account</field>
+    <field name="arch" type="xml">
+        <list string="Xero Accounts">
+            <field name="code"/>
+            <field name="name"/>
+            <field name="account_type"/>
+            <field name="xero_account_type"/>
+            <field name="xero_tax_type_for_accounts"/>
+            <field name="enable_payments_to_account"/>
+            <field name="company_id"/>
+            <field name="active"/>
+          
+        </list>
+    </field>
+</record>
+
+<!--Search View-->
+<record id="view_xero_account_search" model="ir.ui.view">
+    <field name="name">xero.account.search</field>
+    <field name="model">xero.account</field>
+    <field name="arch" type="xml">
+        <search>
+            <filter name="active" string="Active" domain="[('active','=',True)]"/>
+            <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
+        </search>
+    </field>
+</record>
+
+<!-- Action -->
+
+<record id="xero_account_action" model="ir.actions.act_window">
+    <field name="name">Xero Accounts</field>
+    <field name="res_model">xero.account</field>
+    <field name="view_mode">list</field>
+    <field name="search_view_id" ref="view_xero_account_search"/>
+
+    <!-- <field name="domain">[('xero_account_id', '!=', False)]</field> -->
+</record>
+
+
+
+</odoo>

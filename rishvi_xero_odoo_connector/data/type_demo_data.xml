@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+
+        <!-- Incoming Shipments -->
+        <record id="stock_picking_type_receipts" model="stock.picking.type.new">
+            <field name="name">Receipts</field>
+            <field name="type">IN</field>
+        </record>
+
+        <!-- Outgoing Shipments -->
+        <record id="stock_picking_type_delivery_orders" model="stock.picking.type.new">
+            <field name="name">Delivery Orders</field>
+            <field name="type">OUT</field>
+        </record>
+
+        <!-- Returned Goods -->
+        <record id="stock_picking_type_returns" model="stock.picking.type.new">
+            <field name="name">Returns</field>
+            <field name="type">IN</field>
+        </record>
+
+    </data>
+</odoo>

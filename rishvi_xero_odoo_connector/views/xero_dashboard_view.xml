@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <record id="view_dashboard_action2" model="ir.actions.client">
+            <field name="name">Dashboard</field>
+            <field name="tag">xero_import_dashboard</field>
+        </record>
+        <menuitem name="Xero Odoo Connector" id="menu_xero_odoo_connector"
+            web_icon="rishvi_xero_odoo_connector,static/description/icon.png"/>
+
+        <menuitem id="menu_xero_odoo_connector_dashboard" name="Dashboard"
+                  action="view_dashboard_action2" parent="menu_xero_odoo_connector"
+                  sequence="10"/>
+
+        <menuitem id="menu_xero_odoo_connector_configuration" name="Configuration"
+                  parent="menu_xero_odoo_connector"
+                  sequence="100"/>
+        <menuitem id="menu_xero_odoo_connector_companies" name="Companies"
+                  action="base.action_res_company_form" parent="menu_xero_odoo_connector_configuration"
+                  sequence="1"/>
+                  <menuitem id="menu_xero_odoo_connector_xero_accounts" name="Xero Accounts"
+                  action="xero_account_action" parent="menu_xero_odoo_connector_configuration"
+                  sequence="2"/>
+        <menuitem id="menu_xero_odoo_connector_taxes" name="Xero Taxes"
+                  action="action_xero_tax" parent="menu_xero_odoo_connector_configuration"
+                  sequence="3"/>
+             
+
+    </data>
+</odoo>

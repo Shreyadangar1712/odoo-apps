@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_xero_partner_category_form" model="ir.ui.view">
+		<field name="name">res.partner.category.form.inherit</field>
+		<field name="model">res.partner.category</field>
+		<field name="inherit_id" ref="base.view_partner_category_form" />
+		<field name="arch" type="xml">
+            <xpath expr="//field[@name='parent_id']" position="after">
+                <field name="contact_group_xero_id"  />
+            </xpath>
+        </field>
+	</record>
+
+    <!--CODE FOR EXPORTING CONTACT GROUPS FROM ODOO TO XERO-->
+	<record model="ir.actions.server" id="action_xero_contact_group_export">
+        <field name="name">Export to XERO</field>
+        <field name="model_id" ref="base.model_res_partner_category"/>
+        <field name="binding_model_id" ref="base.model_res_partner_category"/>
+        <field name="state">code</field>
+        <field name="code">if records:
+               action = records.xero_contact_group_create()
+        </field>
+    </record>
+
+</odoo>
