@@ -3,7 +3,9 @@
     'name': 'Odoo Xero Integration',
     'version': '19.0.0.0',
     'category': 'Services',
-    'author': 'Rishvi Ltd.',
+    'author':'Rishvi Ltd',
+    'company': 'Rishvi Ltd',
+    'maintainer': 'Rishvi Ltd',
     'website': "www.rishvi.co.uk",
     'depends': ['base','account', 'purchase','stock','sale_management'],
     'summary': 'Xero Connector with REST API Xero Odoo Integration App xero accounting odoo xero connector odoo xero integration odoo xero accounting integration accounting app',
@@ -50,6 +52,7 @@
 
         'data/type_demo_data.xml',
     ],
+    'images': ['static/description/banner.png'],
     'price': 259.00,
     'currency': 'EUR',
     'license': 'OPL-1',
