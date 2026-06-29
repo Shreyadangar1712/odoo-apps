@@ -1,0 +1,155 @@
+// .header-accounts        { background: #1e88e5; } /* Blue */
+// .header-taxes           { background: #43a047; } /* Green */
+// .header-products        { background: #00acc1; } /* Cyan */
+// .header-inventory       { background: #f9a825; } /* Yellow */
+// .header-contact-groups  { background: #6d4c41; } /* Brown */
+// .header-contacts        { background: #8e24aa; } /* Purple */
+// .header-purchase        { background: #fb8c00; } /* Orange */
+// .header-invoices        { background: #3949ab; } /* Indigo */
+// .header-credit          { background: #e53935; } /* Red */
+// .header-payments        { background: #00897b; } /* Teal */
+// .header-prepayments     { background: #5e35b1; } /* Deep Purple */
+// .header-overpayments    { background: #c2185b; } /* Pink */
+// .header-sale            { background: #2e7d32; } /* Dark Green */
+// .header-journal         { background: #546e7a; } /* Blue Grey */
+// .header-spend           { background: #ef6c00; } /* Dark Orange */
+// .header-all-spend       { background: #00796b; } /* Dark Teal */
+// .header-failed-spend    { background: #d32f2f; } /* Error Red */
+// .header-view-failed     { background: #455a64; } /* Slate */
+/* Accounting & Core */
+/* Core Accounting */
+.header-accounts {
+    background: #4f8df5;   /* Calm Blue */
+}
+.header-taxes {
+    background: #5cb85c;   /* Soft Green */
+}
+.header-products {
+    background: #8a2d7d;   /* Muted Teal */
+}
+.header-inventory {
+    background: #f0ad4e;   /* Warm Amber */
+}
+
+/* Contacts */
+.header-contact-groups {
+    background: #9575cd;   /* Soft Purple */
+}
+.header-contacts {
+    background: #7986cb;   /* Blue Violet */
+}
+
+/* Purchase & Sales */
+.header-purchase {
+    background: #62cf53;   /* Soft Orange */
+}
+.header-sale {
+    background: #66bb6a;   /* Balanced Green */
+}
+
+/* Accounting Documents */
+.header-invoices {
+    background: #e6cf4d;   /* Indigo */
+}
+// .header-credit {
+//     background: #ef6c6c;   /* Muted Red */
+// }
+.header-journal {
+    background: #90a4ae;   /* Cool Grey */
+}
+
+/* Payments */
+.header-payments {
+    background: #8a2d7d;   /* Muted Teal */
+}
+.header-prepayments {
+    background: #ab47bc;   /* Medium Violet */
+}
+.header-overpayments {
+    background: #a7637a;   /* Soft Pink */
+}
+
+/* Spend / Receive */
+.header-spend {
+    background: #ffa726;   /* Orange */
+}
+.header-all-spend {
+    background: #29b6f6;   /* Sky Blue */
+}
+.header-failed-spend {
+    background: #e57373;   /* Error Red */
+}
+.header-view-failed {
+    background: #78909c;   /* Slate Grey */
+}
+.xero-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.xero-sidebar {
+    width: 240px;
+    background: #ffffff;
+    border-right: 1px solid #dee2e6;
+    padding: 12px;
+}
+
+.sidebar-title {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.sidebar-item {
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.sidebar-item:hover {
+    background: #f1f5f9;
+}
+
+.sidebar-item.active {
+    background: #e0f2fe;
+    color: #0c0d0e;
+    font-weight: 600;
+}
+
+.xero-content {
+    flex: 1;
+    padding: 20px;
+    overflow: auto;
+}
+/* Full-width, card-style date input */
+.custom-date-input {
+    border: 1.5px solid #0d1011;  /* same as card header */
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    appearance: none; /* removes default browser style */
+}
+
+/* Focus effect */
+.custom-date-input:focus {
+    border-color: #101111; /* darker shade on focus */
+    box-shadow: 0 0 6px rgba(0, 164, 201, 0.3);
+    outline: none;
+}
+
+/* Calendar icon styling (keeps the icon but matches pointer) */
+.custom-date-input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0.4); /* subtle color adjustment to match theme */
+}
+
+/* Firefox calendar icon */
+.custom-date-input::-moz-calendar-picker-indicator {
+    cursor: pointer;
+}
+
