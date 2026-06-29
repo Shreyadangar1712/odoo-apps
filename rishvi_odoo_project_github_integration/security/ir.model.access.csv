@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_github_repository,access_github_repository,model_github_repository,base.group_user,1,1,1,1
+access_hr_employee,access_hr_employee,model_hr_employee,base.group_user,1,1,1,1
+
+

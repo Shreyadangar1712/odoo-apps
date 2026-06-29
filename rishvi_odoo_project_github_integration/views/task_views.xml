@@ -1,0 +1,36 @@
+<odoo>
+<record id="project_task_form_github_inherit" model="ir.ui.view">
+    <field name="name">project.task.form.github.inherit</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//notebook" position="inside">
+            <page string="GitHub">
+
+                <group>
+                    <field name="github_repo_id"/>
+
+                    <field name="github_create_branch" readonly="github_branch_url"/>
+
+                    <field name="github_branch_name"
+                           invisible="not github_create_branch" readonly="github_branch_url"/>
+
+                    <field name="github_branch_created"
+                           readonly="1" />
+                            <field name="github_branch_url" widget="url"/>
+
+                    <button name="action_create_github_branch"
+                    string="Create Branch"
+                    type="object"
+                    class="btn-primary" />
+
+                    
+                </group>
+
+            </page>
+        </xpath>
+
+    </field>
+</record>
+</odoo>

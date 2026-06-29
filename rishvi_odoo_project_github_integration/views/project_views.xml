@@ -1,0 +1,37 @@
+<odoo>
+<record id="project_project_form_github_inherit" model="ir.ui.view">
+    <field name="name">project.project.form.github.inherit</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//notebook" position="inside">
+            <page string="GitHub">
+                <group>
+                    <field name="github_create_repo" readonly="github_repo_url"/>
+                    <field name="github_repo_name"
+                           invisible="not github_create_repo" readonly="github_repo_url"/>
+
+                    <field name="github_visibility"
+                           invisible="not github_create_repo" readonly="github_repo_url"/>
+
+                    <field name="github_description"
+                           invisible="not github_create_repo" readonly="github_repo_url"/>
+                           <field name ="github_repo_url"/>
+                           <field name="github_invitation_sent" readonly="1"/>
+
+                    <button name="action_create_github_repo"
+                    string="Create Repository"
+                    type="object"
+                    class="btn-primary"/>
+                    <button name="action_send_invitation"
+                    string="Send Invitation"
+                    type="object"
+                    class="btn-primary" invisible="github_invitation_sent"/>
+                </group>
+            </page>
+        </xpath>
+
+    </field>
+</record>
+</odoo>
