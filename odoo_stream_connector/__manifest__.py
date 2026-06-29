@@ -56,7 +56,7 @@ Odoo Sales and the Stream Transport Platform.
     ],
     'images': ['static/description/banner.png'],
     'price': 650.00,
-    'currency': 'GBP',
+    'currency': 'USD',
     'installable': True,
     'application': True,
     'auto_install': False,
