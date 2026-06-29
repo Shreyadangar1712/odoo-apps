@@ -20,10 +20,12 @@ Benefits
 * Improved collaboration between developers and project managers
 * Seamless GitHub integration within Odoo
 """,
-    "author": "Rishvi Ltd",
+    'author':'Rishvi Ltd',
+    'company': 'Rishvi Ltd',
+    'maintainer': 'Rishvi Ltd',
     "website": "https://rishvi.co.uk/",
     "category": "Project",
-    "price": 0.0,
+    "price": 150.0,
     "currency": "USD",
     "depends": [
         "base",
@@ -37,7 +39,7 @@ Benefits
         "views/employee.xml",
         "views/res_users.xml"
     ],
-    
+    'images': ['static/description/banner.png'],
     "installable": True,
     "application": False,
     "auto_install": False,
